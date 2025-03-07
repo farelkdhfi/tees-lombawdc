@@ -16,6 +16,7 @@ const Hero2 = () => {
                     <h1 className='z-10 text-white text-3xl sm:text-5xl md:text-7xl font-bold'>FIND UR CLOTHES</h1>
                     <button className='z-10 text-white text-sm font-bold underline'>Shop Now</button>
                 </div>
+                <div className='w-screen h-screen bg-black/50 absolute '></div>
             </div>
 
         </section>
