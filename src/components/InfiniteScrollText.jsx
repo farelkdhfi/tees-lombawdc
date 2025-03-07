@@ -2,28 +2,33 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const InfiniteScrollText = () => {
-  const containerRef = useRef(null);
-  const textRef = useRef(null);
+  const marqueeRef = useRef(null);
+    const tweenRef = useRef(null);
 
-  useEffect(() => {
-    const text = textRef.current;
-    const container = containerRef.current;
-    const textWidth = text.offsetWidth;
+    useEffect(() => {
+        const marquee = marqueeRef.current;
+        const clone = marquee.innerHTML;
+        marquee.innerHTML += clone + clone + clone + clone + clone; // Duplicate content for seamless loop
 
-    // Duplikasi teks untuk efek seamless
-    text.innerHTML += text.innerHTML;
+        tweenRef.current = gsap.to(marquee, {
+            x: "-50%", // Move halfway to create an infinite loop
+            duration: 15,
+            ease: "linear",
+            repeat: -1,
+        });
+    }, []);
 
-    gsap.to(text, {
-      x: `-${textWidth / 2}px`, // Geser setengah dari panjang teks yang diduplikasi
-      duration: 20,
-      ease: "linear",
-      repeat: -1
-    });
-  }, []);
+    const handleMouseEnter = () => {
+        gsap.to(tweenRef.current, { timeScale: 0.2, duration: 0.5, ease: "power4.out" }); // Gradual slow down
+    };
+
+    const handleMouseLeave = () => {
+        gsap.to(tweenRef.current, { timeScale: 1 }); // Gradual speed up
+    };
 
   return (
-    <div ref={containerRef} className="whitespace-nowrap w-[200%] text-black/70 bg-[#fff] h-10 flex items-center z-[9999]">
-      <div ref={textRef} className="inline-block text-[10px]">
+    <div ref={marqueeRef} className="whitespace-nowrap w-full text-black/70 bg-[#fff] h-10 flex items-center z-[9999]" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div className="inline-block text-[10px]">
         {"     "} {""} Fashion Berkelanjutan, Bumi Lebih Nyaman! &nbsp; • &nbsp; Fashion Berkelanjutan, Bumi Lebih Nyaman! &nbsp; • &nbsp; Fashion Berkelanjutan, Bumi Lebih Nyaman! &nbsp; • &nbsp; 
       </div>
     </div>
