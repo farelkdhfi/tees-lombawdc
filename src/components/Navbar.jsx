@@ -413,7 +413,7 @@ export default function Navbar() {
                                 <li className="relative cursor-default">
                                     <p onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(true), setShowBlur(true)]} className="hover:text-black text-black/50">Kids</p>
                                 </li>
-                                <li><Link onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="hover:text-black text-black/50">Company</Link></li>
+                                <li><Link to="/about" onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="hover:text-black text-black/50">Company</Link></li>
                                 <li><Link onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="hover:text-black text-black/50">Tips & Tricks</Link></li>
                             </ul>
                         </div>
