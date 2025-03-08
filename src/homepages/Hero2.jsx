@@ -5,9 +5,9 @@ import ImageHero from '../assets/imgvid.jpg';
 const Hero2 = () => {
     return (
         <section className='pt-20 md:pt-30'>
-            <div className='w-full relative flex flex-col-reverse justify-center items-center md:flex-row-reverse h-screen overflow-hidden'>
-                <div className='md:w-1/2 w-full'>
-                    <img src={ImageHero} alt="" className="w-full h-auto object-cover grayscale" />
+            <div className='w-full relative flex flex-col-reverse justify-center items-center md:flex-row-reverse h-[60vh] lg:h-screen overflow-hidden'>
+                <div className='md:w-1/2 w-full h-full'>
+                    <img src={ImageHero} alt="" className="w-full h-full object-cover grayscale" />
                 </div>
                 <video className='md:w-1/2 w-full' muted playsInline autoPlay loop>
                     <source src={VideoHero} type='video/mp4' className='w-full h-auto object-cover' />

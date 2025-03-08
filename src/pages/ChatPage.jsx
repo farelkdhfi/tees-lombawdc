@@ -2,17 +2,28 @@ import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Avatar from '../assets/seller.png'
 import Avatar2 from '../assets/cust1.png'
-import { Camera, Plus, SendHorizonal } from "lucide-react";
+import { Camera, Plus, SendHorizonal, ShieldCheck } from "lucide-react";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import { Link, useParams } from "react-router-dom";
+import products from "../utils/products";
 
-export default function ChatApp() {
+const ChatPage = () => {
+    const { id } = useParams();
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
     const chatRef = useRef(null);
     const [botIndex, setBotIndex] = useState(0);
     const lastMessageRef = useRef(null);
 
+    // Menggabungkan semua produk dari berbagai kategori
+    const allProducts = products.flatMap(category => category.items);
 
+    // Mencari produk berdasarkan id
+    const product = allProducts.find((item) => item.id === parseInt(id));
+
+    if (!product) {
+        return <div className="text-center text-red-500 text-lg">Produk tidak ditemukan</div>;
+    }
 
     useEffect(() => {
         if (messages.length > 0) {
@@ -125,17 +136,36 @@ export default function ChatApp() {
                             <QuestionMarkCircleIcon className="w-6 h-6" />
                         </div>
                     </div>
+
+                    <div className="py-2 px-3 bg-white border-b-black/15 border-b w-full flex justify-between items-center">
+                        <div className="flex gap-x-2">
+                        <img src={product.image} className="w-20 h-15 object-cover rounded-lg" alt="" />
+                        <div>
+                            <p className="text-sm font-semibold mb-2">{product.name}</p>
+                            <p className="text-sm">${product.price}</p>
+                            <div className="flex gap-x-1 items-center">
+                                <p className="text-xs text-green">${product.price + 5} Include Buyer Protection</p>
+                                <ShieldCheck className="w-4 h-4 text-green" />
+                            </div>
+                        </div>
+                        </div>
+                        
+                        <div className="text-sm py-2 px-3 rounded-lg border border-black/20">
+                        <Link to={`/product/${product.id}`}>Back</Link>
+                        </div>
+                    </div>
+
                     <div className="flex flex-col h-full overflow-y-auto md:p-5 p-3 space-y-5 w-full" ref={chatRef}>
                         {messages.map((msg, index) => (
                             <div
                                 key={index}
                                 ref={index === messages.length - 1 ? lastMessageRef : null}
-                                className={`py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] overflow-x-clip md:max-w-xs text-xs md:text-sm ${msg.sender === "user"
+                                className={`py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm ${msg.sender === "user"
                                     ? "bg-gray-100 text-black/70 shadow-lg self-end text-start w-fit"
                                     : "bg-gray-300 text-black shadow-lg self-start text-left w-fit"
                                     }`}
                             >
-                                {msg.text && <p>{msg.text}</p>}
+                                {msg.text && <p className="mr-9 break-words">{msg.text}</p>}
                                 {msg.image && <img src={msg.image} alt="Uploaded" className="w-40 rounded-lg mt-2" />}
                                 <p className=" text-xs self-end text-black/40">11.37</p>
                             </div>
@@ -172,3 +202,5 @@ export default function ChatApp() {
         </main>
     );
 }
+
+export default ChatPage;

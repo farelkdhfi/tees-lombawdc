@@ -14,7 +14,7 @@ const ProductDetails = () => {
   const navigate = useNavigate()
 
   const handlechat = () => {
-    navigate('/chat')
+    navigate(`/chat/${product.id}`)
   }
 
   // Menggabungkan semua produk dari berbagai kategori
