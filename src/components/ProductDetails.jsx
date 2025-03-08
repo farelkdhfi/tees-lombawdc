@@ -4,10 +4,12 @@ import products from "../utils/products";
 import Img from '../assets/seller.png'
 import { FaStar } from "react-icons/fa";
 import { Heart } from "lucide-react";
+import BuyNow from "./BuyNow";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [showAll, setShowAll] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false)
 
   // Menggabungkan semua produk dari berbagai kategori
   const allProducts = products.flatMap(category => category.items);
@@ -122,7 +124,7 @@ const ProductDetails = () => {
             </div>
 
             <div className="mt-4 text-xs md:text-sm">
-              <button className="w-full bg-[#3D9970] text-white py-2 rounded-lg font-semibold">Checkout</button>
+              <button onClick={() => setModalOpen(true)} className="w-full bg-[#3D9970] text-white py-2 rounded-lg font-semibold">Buy Now</button>
               <button className="w-full bg-[#fafafa] py-2 mt-2 rounded-lg border border-black/20">Make an offer</button>
               <button className="w-full bg-[#fafafa] py-2 mt-2 rounded-lg border border-black/20">Apply for barter</button>
               <button className="w-full bg-[#fafafa] py-2 mt-2 rounded-lg border border-black/20">Message seller</button>
@@ -165,6 +167,8 @@ const ProductDetails = () => {
           </button>
         )}
       </div>
+      <BuyNow modalOpen={modalOpen} modalClose={() => setModalOpen(false)} />
+
     </section>
 
   );

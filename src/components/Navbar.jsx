@@ -11,6 +11,7 @@ import Logo from '../assets/tees.png'
 import Img1 from '../assets/Imagesrecently1.png'
 import Img2 from '../assets/Imagesrecently2.png'
 import { List, ShoppingBag, Store, User, X } from "lucide-react";
+import SignInUp from "../accountpages/SignInUp";
 
 export default function Navbar() {
     const [searchDropDown, setsearchDropDown] = useState(false);
@@ -210,6 +211,9 @@ export default function Navbar() {
 
     //Navbar Mobile
     const [isMobile, setIsMobile] = useState(false)
+
+    //Signsignup
+    const [openLogin, setOpenLogin] = useState(false);
 
 
     return (
@@ -457,7 +461,7 @@ export default function Navbar() {
                                 <ShoppingBagIcon className="w-5" />
                             </div>
                             <div onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="text-black/50 text-base hidden lg:flex">
-                                <UserIcon className="w-5" />
+                                <UserIcon onClick={() => setOpenLogin(true)} className="w-5" />
                             </div>
                         </div>
 
@@ -535,6 +539,8 @@ export default function Navbar() {
                     </div>
                 </div>
             )}
+            <SignInUp openLogin={openLogin} closeLogin={() => setOpenLogin(false)} />
+
         </header>
     );
 }

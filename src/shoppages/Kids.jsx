@@ -8,6 +8,8 @@ import Banner from '../assets/women.jpg'
 import Banner2 from '../assets/Imagesrecently1.png'
 import Banner3 from '../assets/Imagesrecently2.png'
 import Banner4 from '../assets/Imagesrecently3.png'
+import Logo from '../assets/tees.png'
+
 import gsap from "gsap";
 import { SearchIcon } from "lucide-react";
 
@@ -27,7 +29,7 @@ export default function Kids() {
     const itemsPerPage = 24;
 
     const banners = [
-        { src: Banner, text: "- Kid's Fashion -" },
+        { src: Banner, text: "- Kid Fashion -" },
         { src: Banner2, text: "- Elegant Style -" },
         { src: Banner3, text: "- Trendy Looks -" },
         { src: Banner4, text: "- Chic & Classy -" }
@@ -127,6 +129,7 @@ export default function Kids() {
     const [isLoading, setIsLoading] = useState(false)
     const loadingRef = useRef(null);
     const dotsRef = useRef([]);
+    const spinnerRef = useRef(null);
 
     useEffect(() => {
         if (isLoading) {
@@ -161,32 +164,32 @@ export default function Kids() {
     }, [isLoading]);
 
     return (
-        <section className=" min-h-screen pt-30">
+        <section className=" min-h-screen pt-20 md:pt-30">
 
             {isLoading && (
                 <div
                     ref={loadingRef}
-                    className="h-screen bg-white/50 backdrop-blur-2xl fixed inset-0 flex flex-col justify-center items-center overflow-hidden z-20 pointer-events-none"
+                    className="h-screen bg-white/50 backdrop-blur-2xl fixed inset-0 flex justify-center items-center overflow-hidden z-20 pointer-events-none"
                 >
                     {/* Tulisan Loading dengan Titik Bergerak */}
-                    <p className="text-green-800/80 text-sm flex">
-                        Loading
-                        <span ref={(el) => (dotsRef.current[0] = el)} className="opacity-0">.</span>
-                        <span ref={(el) => (dotsRef.current[1] = el)} className="opacity-0">.</span>
-                        <span ref={(el) => (dotsRef.current[2] = el)} className="opacity-0">.</span>
+                    <img src={Logo} alt="" className="h-5 mr-2" />
+                    <p className="text-black flex">
+                        <span ref={(el) => (dotsRef.current[0] = el)} className="opacity-0 text-4xl">.</span>
+                        <span ref={(el) => (dotsRef.current[1] = el)} className="opacity-0 text-4xl">.</span>
+                        <span ref={(el) => (dotsRef.current[2] = el)} className="opacity-0 text-4xl">.</span>
                     </p>
                 </div>
             )}
 
-            <div className="px-20">
-                <div className="w-full relative h-70 flex bg-[#000] justify-center items-center text-5xl font-bold text-white px-20 rounded-lg overflow-hidden">
+            <div className="lg:px-15 px-3">
+                <div className="w-full relative h-70 flex bg-[#000] justify-center items-center text-2xl md:text-5xl font-bold text-white md:px-15 px-5 rounded-lg overflow-hidden">
                     <img ref={imageRef} src={banners[currentIndex].src} alt="" className="absolute w-full h-full object-cover opacity-50" />
                     <p ref={textRef} className="w-full text-center z-10">
                         {banners[currentIndex].text}
                     </p>
                 </div>
             </div>
-            <div id="target-section" className="flex lg:flex-row flex-col-reverse gap-x-12 px-5 lg:px-20 mb-8 mt-8 min-h-screen">
+            <div id="target-section" className="flex lg:flex-row flex-col-reverse gap-x-8 px-3 md:px-3 lg:px-15 mb-8 mt-8 min-h-screen">
                 <aside className="flex flex-col gap-y-6 lg:w-1/5 bg-white h-full md:sticky md:-top-57 md:overflow-visible text-black/70 w-full scrollbar-hidden border border-black/20 rounded-lg p-5 shadow-lg">
                     <div>
                         <div className="flex items-center gap-2 flex-wrap mb-8 md:w-full">
@@ -306,7 +309,7 @@ export default function Kids() {
                         <div className="flex gap-x-3">
                             <Link to="/" className="hover:text-black hover:font-semibold">Home</Link>
                             <p>›</p>
-                            <p className="font-semibold flex gap-x-1 items-center">Kids <FaShop /></p>
+                            <p className="font-semibold flex gap-x-1 items-center">Kid <FaShop /></p>
                         </div>
                         <div className="w-full flex justify-between items-center">
                             <h2 className="text-sm text-black/70 ">Showing {startIndex + 1}-{Math.min(endIndex, filteredProducts.length)} of {filteredProducts.length} results.</h2>
@@ -348,19 +351,19 @@ export default function Kids() {
                                         <img
                                             src={product.image}
                                             alt={product.name}
-                                            className="w-full h-72 object-cover"
+                                            className="w-full h-auto lg:h-72 object-cover"
                                         />
                                         {/* Icon Search */}
                                         <div className="absolute inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-white to-50% backdrop-blur-md">
                                             <SearchIcon className="w-10 h-10 text-black/70 bg-white/80 rounded-full p-2 shadow-md" />
                                         </div>
                                     </div>
-                                    <div className="p-5">
+                                    <div className="md:p-5 p-2">
                                         <div className=" flex justify-between">
-                                            <h3 className="font-semibold text-black/70 text-base">{product.name}</h3>
-                                            <HeartIcon className="w-5 text-black/70" />
+                                            <h3 className="font-semibold text-black/70 text-sm md:text-base">{product.name}</h3>
+                                            <HeartIcon className="md:w-5 w-3 text-black/70" />
                                         </div>
-                                        <p className="text-gray-500 text-sm capitalize">{product.categori}</p>
+                                        <p className="text-gray-500 md:text-sm text-xs capitalize">{product.categori}</p>
                                         <div className="flex justify-between mt-5 items-center">
                                             <p className="md:text-xl text-sm text-black/70 font-semibold">${product.price}</p>
                                             <p className="text-green-800/50 text-[10px] md:text-sm">{product.location}</p>

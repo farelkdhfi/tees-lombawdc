@@ -8,14 +8,15 @@ import 'swiper/css/navigation';
 
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import Img1 from '../assets/cust1.png';
+import Img2 from '../assets/cust2.png';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const comments = [
     {
-        image: Img1,
+        image: Img2,
         description: "You won't regret it. I would like to personally thank you for your outstanding product. Absolutely wonderful!",
         star: "★★★★★",
-        name: "Michael",
+        name: "Angely",
         profession: "Traveler"
     },
     {
