@@ -10,6 +10,8 @@ export default function ChatApp() {
     const [input, setInput] = useState("");
     const chatRef = useRef(null);
     const [botIndex, setBotIndex] = useState(0);
+    const lastMessageRef = useRef(null);
+
 
 
     useEffect(() => {
@@ -19,6 +21,13 @@ export default function ChatApp() {
                 { opacity: 0, y: 20 },
                 { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
             );
+        }
+    }, [messages]);
+
+    // Auto-scroll ke bawah setiap kali ada pesan baru
+    useEffect(() => {
+        if (lastMessageRef.current) {
+            lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
         }
     }, [messages]);
 
@@ -39,6 +48,25 @@ export default function ChatApp() {
             setMessages((prev) => [...prev, { text: botReplies[botIndex], sender: "bot" }]);
             setBotIndex((prevIndex) => (prevIndex + 1) % botReplies.length);
         }, 1000);
+    };
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const userImageMessage = { image: reader.result, sender: "user" };
+                setMessages((prev) => [...prev, userImageMessage]);
+
+                setTimeout(() => {
+                    setMessages((prev) => [
+                        ...prev,
+                        { text: "Gambar yang menarik! Ada yang bisa saya bantu?", sender: "bot" }
+                    ]);
+                }, 1000);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     return (
@@ -101,21 +129,25 @@ export default function ChatApp() {
                         {messages.map((msg, index) => (
                             <div
                                 key={index}
+                                ref={index === messages.length - 1 ? lastMessageRef : null}
                                 className={`py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] overflow-x-clip md:max-w-xs text-xs md:text-sm ${msg.sender === "user"
                                     ? "bg-gray-100 text-black/70 shadow-lg self-end text-start w-fit"
                                     : "bg-gray-300 text-black shadow-lg self-start text-left w-fit"
                                     }`}
                             >
-                                <p className="mr-9">{msg.text}</p>
+                                {msg.text && <p>{msg.text}</p>}
+                                {msg.image && <img src={msg.image} alt="Uploaded" className="w-40 rounded-lg mt-2" />}
                                 <p className=" text-xs self-end text-black/40">11.37</p>
                             </div>
                         ))}
                     </div>
                     <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mt-2 text-black/70 bg-[#fff] border-t border-t-black/30 w-full p-3 sm:p-4 md:p-5">
-                        <button className="">
+                        {/* upload image */}
+                        <input type="file" accept="image/*" className="hidden" id="imageUpload" onChange={handleImageUpload} />
+                        <button onClick={() => document.getElementById("imageUpload").click()}>
                             <Plus className="w-5 h-5" />
                         </button>
-                        <button className="">
+                        <button onClick={() => document.getElementById("imageUpload").click()}>
                             <Camera className="w-5 h-5" />
                         </button>
                         <input

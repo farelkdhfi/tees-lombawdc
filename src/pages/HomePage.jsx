@@ -4,8 +4,6 @@ import DealsMonth from '../homepages/DealsMonth'
 import RecentlyUploaded from '../homepages/RecentlyUploaded'
 import CustomerSay from '../homepages/CustomerSay'
 import Hero2 from '../homepages/Hero2'
-import EduShop from '../shoppages/EduShop'
-import Subscription from '../components/Subscription'
 
 
 const HomePage = () => {
