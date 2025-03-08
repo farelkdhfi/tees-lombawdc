@@ -42,7 +42,7 @@ export default function ChatApp() {
     };
 
     return (
-        <section className="w-full flex pt-20 md:pt-30 h-[calc(100vh-80px)] pb-20 px-3 lg:px-15 lg:pb-0">
+        <main className="w-full flex pt-20 md:pt-30 h-screen px-3 lg:px-15 pb-20 lg:pb-0">
             <div className="md:w-1/3 md:block hidden">
                 <div className="h-full bg-[#fafafa] p-5  overflow-hidden">
                     <p className="font-semibold text-black text-xl">INBOX</p>
@@ -137,6 +137,6 @@ export default function ChatApp() {
                 </div>
             </div>
 
-        </section>
+        </main>
     );
 }
