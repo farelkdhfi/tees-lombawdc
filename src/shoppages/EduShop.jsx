@@ -44,28 +44,28 @@ const EduShop = () => {
                 <div className="lg:w-1/2 flex flex-col justify-center items-center space-y-5">
                     <div className="bg-[#fafafa] p-6 rounded-lg shadow-md">
                         <h3 className="font-semibold text-black/70">Tahukah Kamu?</h3>
-                        <p className="text-black/70 text-sm mt-2">
+                        <p className="text-black/70 text-xs mt-2">
                             Dibutuhkan sekitar 2.700 liter air untuk membuat satu kaos katun, 
                             setara dengan kebutuhan air minum seseorang selama lebih dari 2 tahun!
                         </p>
                     </div>
                     <div className="bg-[#fafafa] p-6 rounded-lg shadow-md">
                         <h3 className="font-semibold text-black/70">Fakta Menarik</h3>
-                        <p className="text-black/70 text-sm mt-2">
+                        <p className="text-black/70 text-xs mt-2">
                             Hanya 1% pakaian bekas yang benar-benar didaur ulang menjadi pakaian baru. 
                             Oleh karena itu, penting untuk membeli pakaian dengan bijak.
                         </p>
                     </div>
                     <div className="bg-[#fafafa] p-6 rounded-lg shadow-md">
                         <h3 className="font-semibold text-black/70">Dampak Limbah Tekstil</h3>
-                        <p className="text-black/70 text-sm mt-2">
+                        <p className="text-black/70 text-xs mt-2">
                             Setiap tahun, lebih dari 92 juta ton limbah tekstil dihasilkan secara global. 
                             Sebagian besar dari limbah ini berakhir di tempat pembuangan sampah.
                         </p>
                     </div>
                     <div className="bg-[#fafafa] p-6 rounded-lg shadow-md">
                         <h3 className="font-semibold text-black/70">Jejak Karbon Industri Fashion</h3>
-                        <p className="text-black/70 text-sm mt-2">
+                        <p className="text-black/70 text-xs mt-2">
                             Industri fashion menyumbang sekitar 10% dari emisi karbon global, 
                             lebih besar dari total emisi penerbangan dan pelayaran digabungkan!
                         </p>

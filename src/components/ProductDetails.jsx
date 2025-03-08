@@ -129,7 +129,7 @@ const ProductDetails = () => {
               </p>
             </div>
 
-            <div className="mt-4 text-xs md:text-sm">
+            <div className="mt-4 text-sm">
               <button onClick={() => setModalOpen(true)} className=" cursor-pointer w-full bg-green hover:bg-green-800/80 transition-all duration-300 text-white py-2 rounded-lg font-semibold">Buy Now</button>
               <button className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Make an offer</button>
               <button className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Apply for barter</button>

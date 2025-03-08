@@ -36,12 +36,12 @@ const BuyNow = ({ modalOpen, modalClose }) => {
 
         setTimeout(() => {
             setIsLoading(false); // Setelah 1 detik, ubah ke tampilan sukses
-        }, 2000);
+        }, 4000);
 
         setTimeout(() => {
             setShowSuccessModal(false);
             modalClose();
-        }, 5000);
+        }, 7000);
     };
 
     return (
@@ -53,7 +53,7 @@ const BuyNow = ({ modalOpen, modalClose }) => {
                             <h2 className="text-lg font-semibold mb-3 sm:mb-4">Fast Payment</h2>
                             <div className='space-y-4'>
                                 <div className='flex flex-col sm:flex-row gap-3'>
-                                    <img src={product.image} alt="" className='h-20 w-fit' />
+                                    <img src={product.image} alt="" className='h-20 w-30' />
                                     <div>
                                         <p>Name: {product.name}</p>
                                         <p>Quality: Good</p>
@@ -96,10 +96,10 @@ const BuyNow = ({ modalOpen, modalClose }) => {
                                 </ul>
                                 <p className='mb-2'>Payment method:</p>
                                 <img src={Payment} alt="" className='h-20 mb-4' />
-                                <button className="w-full cursor-pointer hover:bg-green-800/80 transition-all duration-300 bg-green text-white py-2 text-xs sm:text-sm rounded-lg mb-2" onClick={handleProceedToPayment}>
+                                <button className="w-full cursor-pointer hover:bg-green-800/80 transition-all duration-300 bg-green text-white py-2 text-sm rounded-lg mb-2" onClick={handleProceedToPayment}>
                                     Proceed to Payment
                                 </button>
-                                <button className="w-full cursor-pointer hover:bg-gray-100 transition-all duration-300 border border-black/70 text-black/70 py-2 text-xs sm:text-sm rounded-lg" onClick={modalClose}>
+                                <button className="w-full cursor-pointer hover:bg-gray-100 transition-all duration-300 border border-black/70 text-black/70 py-2 text-sm rounded-lg" onClick={modalClose}>
                                     Cancel
                                 </button>
                             </div>
