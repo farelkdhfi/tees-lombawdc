@@ -8,6 +8,7 @@ import Payment from '../assets/payments.png';
 const BuyNow = ({ modalOpen, modalClose }) => {
     const { id } = useParams();
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const allProducts = products.flatMap(category => category.items);
     const product = allProducts.find((item) => item.id === parseInt(id));
@@ -31,16 +32,22 @@ const BuyNow = ({ modalOpen, modalClose }) => {
 
     const handleProceedToPayment = () => {
         setShowSuccessModal(true);
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false); // Setelah 1 detik, ubah ke tampilan sukses
+        }, 2000);
+
         setTimeout(() => {
             setShowSuccessModal(false);
             modalClose();
-        }, 2000); // Modal berhasil akan tampil selama 2 detik sebelum ditutup
+        }, 5000);
     };
 
     return (
         <>
             <div className="fixed inset-0 z-[999999] bg-black/40 bg-opacity-50 flex justify-center items-center p-2">
-                <div className="bg-white p-3 sm:p-5 rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[90vh] overflow-y-auto text-xs md:text-sm  md:h-auto">
+                <div className="bg-white p-3 sm:p-5 rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[90vh] overflow-y-auto text-xs md:text-sm md:h-auto">
                     <div className='flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5'>
                         <div className='w-full md:w-3/5'>
                             <h2 className="text-lg font-semibold mb-3 sm:mb-4">Fast Payment</h2>
@@ -56,7 +63,7 @@ const BuyNow = ({ modalOpen, modalClose }) => {
                                 <div className='bg-white border border-black/10 p-3 rounded-lg relative'>
                                     <h2 className='mb-5 font-semibold'>My Address</h2>
                                     <p className='md:text-sm max-w-sm'>Jl. Dr.Sukardjo no9 RT12 RW12, Kota Tasikmalaya, Jawa Barat, Indonesia</p>
-                                    <div className='absolute top-3 right-3 flex items-center space-x-1'>
+                                    <div className='absolute top-3 right-3 flex items-center cursor-pointer space-x-1'>
                                         <Pencil className='w-3' />
                                         <p className='text-xs'>Edit</p>
                                     </div>
@@ -89,10 +96,10 @@ const BuyNow = ({ modalOpen, modalClose }) => {
                                 </ul>
                                 <p className='mb-2'>Payment method:</p>
                                 <img src={Payment} alt="" className='h-20 mb-4' />
-                                <button className="w-full bg-black/70 text-white py-2 text-xs sm:text-sm rounded-lg mb-2" onClick={handleProceedToPayment}>
+                                <button className="w-full cursor-pointer hover:bg-green-800/80 transition-all duration-300 bg-green text-white py-2 text-xs sm:text-sm rounded-lg mb-2" onClick={handleProceedToPayment}>
                                     Proceed to Payment
                                 </button>
-                                <button className="w-full border border-black/70 text-black/70 py-2 text-xs sm:text-sm rounded-lg" onClick={modalClose}>
+                                <button className="w-full cursor-pointer hover:bg-gray-100 transition-all duration-300 border border-black/70 text-black/70 py-2 text-xs sm:text-sm rounded-lg" onClick={modalClose}>
                                     Cancel
                                 </button>
                             </div>
@@ -104,11 +111,21 @@ const BuyNow = ({ modalOpen, modalClose }) => {
             {/* Modal Berhasil */}
             {showSuccessModal && (
                 <div className="fixed inset-0 z-[999999] bg-black/40 flex justify-center items-center p-5">
-                    <div className="bg-white p-5 rounded-lg shadow-lg flex flex-col items-center text-center w-fit">
-                        <CheckCheck className='h-10 w-10' />
-                        <h2 className="text-lg font-semibold mb-4">Success!</h2>
-                        <p className="text-xs">Your payment is being processed.</p>
-                        <p className="text-xs">See the proceess on your profile!</p>
+                    <div className="bg-white p-10 rounded-lg shadow-lg flex flex-col items-center text-center w-fit">
+                        {isLoading ? (
+                            <>
+                                <div className="h-10 w-10 border-4 border-gray-300 border-t-green rounded-full animate-spin"></div>
+                                <h2 className="text-lg font-semibold mt-4">Processing...</h2>
+                                <p className="text-xs">Please wait while we process your payment.</p>
+                            </>
+                        ) : (
+                            <>
+                                <CheckCheck className='h-10 w-10 text-green' />
+                                <h2 className="text-lg font-semibold mt-3">Success!</h2>
+                                <p className="text-xs">Your payment is being processed.</p>
+                                <p className="text-xs">See the process on your profile!</p>
+                            </>
+                        )}
                     </div>
                 </div>
             )}

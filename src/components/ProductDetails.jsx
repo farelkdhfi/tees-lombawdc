@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import products from "../utils/products";
 import Img from '../assets/seller.png'
 import { FaStar } from "react-icons/fa";
@@ -10,6 +10,12 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [showAll, setShowAll] = useState(false);
   const [modalOpen, setModalOpen] = useState(false)
+
+  const navigate = useNavigate()
+
+  const handlechat = () => {
+    navigate('/chat')
+  }
 
   // Menggabungkan semua produk dari berbagai kategori
   const allProducts = products.flatMap(category => category.items);
@@ -39,28 +45,28 @@ const ProductDetails = () => {
 
             {/* Container gambar kecil dengan jarak */}
             <div className="flex sm:flex-col flex-row sm:w-1/4 w-full gap-2 overflow-hidden">
-              <div className="w-1/3 sm:w-full h-20 sm:h-auto object-cover rounded-lg overflow-hidden">
+              <div className="w-1/4 sm:w-full h-20 sm:h-auto object-cover rounded-lg overflow-hidden">
                 <img
                   src={product.image}
                   alt=""
-                  className="object-cover scale-150"
+                  className="object-cover scale-[4]"
                 />
               </div>
-              <div className="w-1/3 sm:w-full h-20 sm:h-auto object-cover rounded-lg overflow-hidden">
+              <div className="w-1/4 sm:w-full h-20 sm:h-auto object-cover rounded-lg overflow-hidden">
                 <img
                   src={product.image}
                   alt=""
                   className="object-cover scale-[7]"
                 />
               </div>
-              <div className="w-1/3 sm:w-full h-20 sm:h-auto object-cover rounded-lg overflow-hidden">
+              <div className="w-1/4 sm:w-full h-20 sm:h-auto object-cover rounded-lg overflow-hidden">
                 <img
                   src={product.image}
                   alt=""
                   className="object-cover scale-[3]"
                 />
               </div>
-              <div className="w-1/3 sm:w-full h-20 sm:h-auto object-cover rounded-lg overflow-hidden">
+              <div className="w-1/4 sm:w-full h-20 sm:h-auto object-cover rounded-lg overflow-hidden">
                 <img
                   src={product.image}
                   alt=""
@@ -124,16 +130,16 @@ const ProductDetails = () => {
             </div>
 
             <div className="mt-4 text-xs md:text-sm">
-              <button onClick={() => setModalOpen(true)} className="w-full bg-[#3D9970] text-white py-2 rounded-lg font-semibold">Buy Now</button>
-              <button className="w-full bg-[#fafafa] py-2 mt-2 rounded-lg border border-black/20">Make an offer</button>
-              <button className="w-full bg-[#fafafa] py-2 mt-2 rounded-lg border border-black/20">Apply for barter</button>
-              <button className="w-full bg-[#fafafa] py-2 mt-2 rounded-lg border border-black/20">Message seller</button>
+              <button onClick={() => setModalOpen(true)} className=" cursor-pointer w-full bg-green hover:bg-green-800/80 transition-all duration-300 text-white py-2 rounded-lg font-semibold">Buy Now</button>
+              <button className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Make an offer</button>
+              <button className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Apply for barter</button>
+              <button className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20" onClick={handlechat}>Message seller</button>
             </div>
           </div>
         </div>
 
       </div>
-      <div className="lg:px-15 px-3 mt-20 flex flex-col items-center justify-center">
+      <div className="lg:px-15 px-3 mt-20 flex flex-col items-center justify-center mb-10">
         <div className="self-start">
           <h2 className="mb-1 font-semibold text-lg md:text-2xl">You might also like</h2>
           <p className="mb-5 text-sm">SIMILIAR PRODUCTS</p>
@@ -160,7 +166,7 @@ const ProductDetails = () => {
         </div>
         {!showAll && products[0].items.length > 6 && (
           <button
-            className="mt-8 px-5 py-2 md:py-3 md:px-8 md:shadow-lg self-center border-b-2 border-b-green-700 text-black/70 shadow font-semibold rounded-lg text-xs md:text-sm"
+            className="mt-8 px-5 py-2 md:py-3 md:px-8 md:shadow-lg self-center bg-green  cursor-pointer hover:bg-green-800/80 text-white transition-all duration-300 shadow font-semibold rounded-lg text-xs md:text-sm"
             onClick={() => setShowAll(true)}
           >
             Show More

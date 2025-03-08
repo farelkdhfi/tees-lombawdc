@@ -39,9 +39,9 @@ function CustomerSay() {
     const swiperRef = useRef(null);
 
     return (
-        <div className="bg-[#fafafa] px-3 md:px-3  py-10 md:py-20">
+        <div className="bg-[#fafafa] px-3 lg:px-15  py-10 md:py-20">
             <div className='flex flex-col items-center justify-center relative'>
-                <h1 className="text-black/70 text-3xl md:text-3xl lg:text-5xl mb-4 md:mb-6 font-semibold text-center">This Is What Our Customers Say</h1>
+                <h1 className="text-black/70 self-start text-xl mb-4 font-semibold">This Is What Our Customers Say</h1>
 
                 {/* Swiper Component */}
                 <Swiper

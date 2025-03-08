@@ -12,7 +12,7 @@ const InfiniteScrollText = () => {
 
         tweenRef.current = gsap.to(marquee, {
             x: "-50%", // Move halfway to create an infinite loop
-            duration: 15,
+            duration: 50,
             ease: "linear",
             repeat: -1,
         });

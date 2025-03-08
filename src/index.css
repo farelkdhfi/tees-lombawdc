@@ -5,6 +5,7 @@
 
 @theme {
   --font-poppins: "Poppins", sans-serif;
+  --color-green: #3D9970
 }
 
 
@@ -35,8 +36,5 @@ body {
   scrollbar-width: none;
 }
 
-.btn-green {
-  background-color: #3D9970;
-}
 
 

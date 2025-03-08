@@ -20,7 +20,7 @@ const GetStartedModal = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 px-4 sm:px-6 md:px-8">
       <div className="bg-white py-10 p-5 md:p-8 rounded-lg shadow-xl max-w-md sm:max-w-lg w-full flex flex-col items-center max-h-[90vh] overflow-y-auto">
-        <img src={Logo} alt="" className='w-25 mb-8' />
+        <img src={Logo} alt="" className='w-25 mb-4' />
         <p className="text-gray-600 leading-relaxed text-start mb-4 text-xs md:text-sm">
           Di era modern ini, kesadaran akan fashion berkelanjutan semakin meningkat. Industri pakaian bekas kini menjadi solusi bagi mereka yang ingin tampil stylish tanpa mengorbankan lingkungan.
         </p>
@@ -46,7 +46,7 @@ const GetStartedModal = ({ isOpen, onClose }) => {
         <button
           onClick={onClose}
           disabled={!isChecked}
-          className={`px-4 py-2 text-sm sm:px-6 sm:py-2 text-white font-semibold rounded-lg w-full transition-all ${isChecked ? 'bg-[#3D9970] hover:bg-green-950' : 'bg-black/60 cursor-not-allowed'}`}
+          className={`px-4 py-2 text-sm sm:px-6 sm:py-3 cursor-pointer duration-300 text-white font-semibold rounded-lg w-full transition-all ${isChecked ? 'bg-[#3D9970] hover:bg-green-800/80' : 'bg-black/30 cursor-not-allowed'}`}
         >
           Get started
         </button>

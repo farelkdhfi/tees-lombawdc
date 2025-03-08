@@ -36,7 +36,7 @@ const DealsMonth = () => {
     }, []);
 
     return (
-        <section className='hidden md:flex flex-col md:flex-row justify-center w-full h-full py-10 md:py-20 bg-gradient-to-br from-[#fafafa] via-white to-[#fafafa] px-3 lg:px-15 relative gap-x-3 overflow-hidden'>
+        <section className='hidden md:flex flex-col md:flex-row justify-center w-full h-full py-10 md:py-20 bg-[#fafafa] px-3 lg:px-15 relative gap-x-3 overflow-hidden'>
             <div className='flex flex-col items-center md:items-start space-y-3 md:space-y-6 text-black/70 md:max-w-[40vw] w-1/2'>
                 <p className='text-black/70 font-semibold text-2xl md:text-3xl lg:text-5xl'><FaMosque className='text-green-800/70' />Ramadhan Deals!</p>
                 <p className='max-w-sm text-xs'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit vel magnam necessitatibus eos quae quia deserunt dignissimos obcaecati eveniet nesciunt.</p>
@@ -54,9 +54,6 @@ const DealsMonth = () => {
             </div>
             <div className='w-1/2 h-full mt-8 lg:mt-0 z-10'>
                 <ImageCarousel />
-            </div>
-            <div className='w-screen h-[0.4px] absolute bg-green-800/70 rotate top-0'>
-
             </div>
         </section>
     );

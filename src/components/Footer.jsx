@@ -9,9 +9,9 @@ const Footer = () => {
                 <div className='flex flex-col md:flex-row justify-between gap-10 w-full'>
                     {/* Logo & Payments */}
                     <div className='flex flex-col w-full md:w-1/3'>
-                        <h1 className='text-4xl font-semibold'>TEES</h1>
+                        <h1 className='text-4xl font-black'>TEES</h1>
                         <p className='border-b border-b-black/40 pb-3 w-fit mb-4'>Supported Payments:</p>
-                        <img src={Pay} alt="Payments" className='w-40 md:w-fit' />
+                        <img src={Pay} alt="Payments" className='w-40 md:w-fit grayscale' />
                     </div>
 
                     {/* Store Section */}

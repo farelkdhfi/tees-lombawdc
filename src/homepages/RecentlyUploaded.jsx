@@ -22,7 +22,7 @@ const RecentlyUploaded = () => {
     useEffect(() => {
         const updateVisibleProducts = () => {
             if (window.innerWidth >= 1024) {
-                setVisibleProducts(12); // lg: 8 produk
+                setVisibleProducts(20); // lg: 8 produk
             } else if (window.innerWidth >= 768) {
                 setVisibleProducts(6); // md: 6 produk
             } else {
@@ -40,14 +40,14 @@ const RecentlyUploaded = () => {
 
     return (
         <div className="bg-[#fff] flex flex-col px-3 md:px-3 lg:px-15 py-10 lg:py-20">
-            <h2 className="text-2xl md:text-3xl lg:text-5xl text-black/70 font-semibold mb-4 md:mb-8">Recently Uploaded</h2>
+            <h2 className="text-xl font-semibold mb-4 text-black/70">Recently Uploaded</h2>
             <div className="flex justify-between mb-4">
                 <div className="flex flex-wrap gap-3 sm:gap-5">
                     {products.map((category) => (
                         <button
                             key={category.name}
-                            className={`px-4 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm cursor-pointer rounded-lg ${activeCategory.name === category.name
-                                ? "border-b-2 border-b-green-700 text-black/70 shadow font-semibold"
+                            className={`px-4 sm:px-5 py-2 sm:py-3 text-xs sm:text-sm cursor-pointer rounded-lg ${activeCategory.name === category.name
+                                ? "bg-green text-white shadow"
                                 : "bg-black/3 text-black/70"
                                 }`}
                             onClick={() => setActiveCategory(category)}

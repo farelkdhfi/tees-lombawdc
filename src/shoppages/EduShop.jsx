@@ -2,10 +2,10 @@ import React from "react";
 
 const EduShop = () => {
     return (
-        <div className="w-full lg:px-15 px-5 py-20">
-            <div className="flex flex-col lg:flex-row text-sm text-start gap-10">
+        <div className="w-full lg:px-15 px-3 lg:py-20 py-10 bg-[#fafafa]">
+            <div className="flex flex-col lg:flex-row text-xs text-start gap-10">
                 <div className="lg:w-1/2">
-                    <h1 className="text-lg font-bold text-gray-800 mb-4">
+                    <h1 className="text-sm font-bold text-gray-800 mb-4">
                         Edukasi Fashion Berkelanjutan
                     </h1>
                     <p className="text-gray-600 mb-6">

@@ -17,7 +17,7 @@ const LogoCarousel = () => {
 
         tweenRef.current = gsap.to(marquee, {
             x: "-50%", // Move halfway to create an infinite loop
-            duration: 15,
+            duration: 30,
             ease: "linear",
             repeat: -1,
         });

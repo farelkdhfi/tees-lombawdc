@@ -9,6 +9,7 @@ import MenShopPage from './pages/MenShopPage';
 import KidsShopPage from './pages/KidsShopPage';
 import GetStartedModal from './utils/GetStartedModal';
 import DetailPage from './pages/DetailPage';
+import ChatApp from './pages/ChatPage';
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/men" element={<MenShopPage />} />
           <Route path="/kid" element={<KidsShopPage />} />
           <Route path="/product/:id" element={<DetailPage />} />
+          <Route path="/chat" element={<ChatApp />} />
         </Routes>
       </main>
       <Footer />
