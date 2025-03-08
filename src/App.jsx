@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -11,19 +11,20 @@ import GetStartedModal from './utils/GetStartedModal';
 import DetailPage from './pages/DetailPage';
 import ChatApp from './pages/ChatPage';
 
-const App = () => {
+const AppContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation(); // Untuk mendapatkan path saat ini
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsModalOpen(true);
     }, 700);
 
-    return () => clearTimeout(timer)
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <Navbar />
       <GetStartedModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
@@ -37,9 +38,16 @@ const App = () => {
           <Route path="/chat" element={<ChatApp />} />
         </Routes>
       </main>
-      <Footer />
-    </Router>
+      {/* Footer hanya ditampilkan jika bukan di halaman /chat */}
+      {location.pathname !== "/chat" && <Footer />}
+    </>
   );
 };
+
+const App = () => (
+  <Router>
+    <AppContent />
+  </Router>
+);
 
 export default App;
