@@ -42,7 +42,7 @@ export default function ChatApp() {
     };
 
     return (
-        <section className="w-full flex pt-20 md:pt-30 h-screen px-3 lg:px-15 pb-20 lg:pb-0">
+        <section className="w-full flex pt-20 md:pt-30 h-screen px-3 lg:px-15 pb-[calc(80px+env(safe-area-inset-bottom))] lg:pb-0">
             <div className="md:w-1/3 md:block hidden">
                 <div className="h-full bg-[#fafafa] p-5  overflow-hidden">
                     <p className="font-semibold text-black text-xl">INBOX</p>
@@ -112,27 +112,27 @@ export default function ChatApp() {
                         ))}
                     </div>
                     <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mt-2 text-black/70 bg-[#fff] border-t border-t-black/30 w-full p-3 sm:p-4 md:p-5">
-    <button className="">
-        <Plus className="w-5 h-5" />
-    </button>
-    <button className="">
-        <Camera className="w-5 h-5" />
-    </button>
-    <input
-        type="text"
-        className="flex-1 px-2 py-1 sm:py-2 bg-gray-300 rounded-lg w-full sm:w-auto text-sm"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-        placeholder="Type message..."
-    />
-    <button
-        onClick={sendMessage}
-        className="p-1 px-3 sm:px-4 cursor-pointer h-full bg-green text-white rounded-lg"
-    >
-        <SendHorizonal className="w-4 h-4" />
-    </button>
-</div>
+                        <button className="">
+                            <Plus className="w-5 h-5" />
+                        </button>
+                        <button className="">
+                            <Camera className="w-5 h-5" />
+                        </button>
+                        <input
+                            type="text"
+                            className="flex-1 px-2 py-2 bg-gray-300 rounded-lg w-full sm:w-auto text-sm"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                            placeholder="Type message..."
+                        />
+                        <button
+                            onClick={sendMessage}
+                            className="p-1 px-3 sm:px-4 cursor-pointer h-full bg-green text-white rounded-lg"
+                        >
+                            <SendHorizonal className="w-4 h-4" />
+                        </button>
+                    </div>
 
                 </div>
             </div>
