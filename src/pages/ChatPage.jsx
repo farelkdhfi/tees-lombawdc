@@ -42,7 +42,7 @@ export default function ChatApp() {
     };
 
     return (
-        <main className="w-full flex pt-20 md:pt-30 h-screen px-3 lg:px-15 pb-20 lg:pb-0">
+        <main className="w-full flex pt-20 md:pt-30 h-[100dvh] px-3 lg:px-15 pb-20 lg:pb-0">
             <div className="md:w-1/3 md:block hidden">
                 <div className="h-full bg-[#fafafa] p-5  overflow-hidden">
                     <p className="font-semibold text-black text-xl">INBOX</p>
