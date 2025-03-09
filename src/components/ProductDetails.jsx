@@ -5,11 +5,13 @@ import Img from '../assets/seller.png'
 import { FaStar } from "react-icons/fa";
 import { Heart } from "lucide-react";
 import BuyNow from "./BuyNow";
+import Offering from "./Offering";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [showAll, setShowAll] = useState(false);
   const [modalOpen, setModalOpen] = useState(false)
+  const [offeringOpen, setOfferingOpen] = useState(false)
 
   const navigate = useNavigate()
 
@@ -131,7 +133,7 @@ const ProductDetails = () => {
 
             <div className="mt-4 text-sm">
               <button onClick={() => setModalOpen(true)} className=" cursor-pointer w-full bg-green hover:bg-green-800/80 transition-all duration-300 text-white py-2 rounded-lg font-semibold">Buy Now</button>
-              <button className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Make an offer</button>
+              <button  onClick={() => setOfferingOpen(true)} className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Make an offer</button>
               <button className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Apply for barter</button>
               <button className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20" onClick={handlechat}>Message seller</button>
             </div>
@@ -174,6 +176,7 @@ const ProductDetails = () => {
         )}
       </div>
       <BuyNow modalOpen={modalOpen} modalClose={() => setModalOpen(false)} />
+      <Offering offeringOpen={offeringOpen} offeringClose={() => setOfferingOpen(false)} />
 
     </section>
 

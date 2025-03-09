@@ -10,6 +10,7 @@ import KidsShopPage from './pages/KidsShopPage';
 import GetStartedModal from './utils/GetStartedModal';
 import DetailPage from './pages/DetailPage';
 import ChatPage from './pages/ChatPage';
+import ChatOffering from './pages/ChatOffering';
 
 const AppContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,10 +37,11 @@ const AppContent = () => {
           <Route path="/kid" element={<KidsShopPage />} />
           <Route path="/product/:id" element={<DetailPage />} />
           <Route path="/chat/:id" element={<ChatPage />} />
+          <Route path="/offer/:id" element={<ChatOffering />} />
         </Routes>
       </main>
       {/* Footer hanya ditampilkan jika bukan di halaman /chat */}
-      {!location.pathname.startsWith("/chat") && <Footer />}
+      {!location.pathname.startsWith("/chat") && !location.pathname.startsWith("/offer") && <Footer />}
 
     </>
   );

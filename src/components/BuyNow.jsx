@@ -96,7 +96,7 @@ const BuyNow = ({ modalOpen, modalClose }) => {
                                 </ul>
                                 <p className='mb-2'>Payment method:</p>
                                 <img src={Payment} alt="" className='h-20 mb-4' />
-                                <button className="w-full cursor-pointer hover:bg-green-800/80 transition-all duration-300 bg-green text-white py-2 text-sm rounded-lg mb-2" onClick={handleProceedToPayment}>
+                                <button className="w-full font-semibold cursor-pointer hover:bg-green-800/80 transition-all duration-300 bg-green text-white py-2 text-sm rounded-lg mb-2" onClick={handleProceedToPayment}>
                                     Proceed to Payment
                                 </button>
                                 <button className="w-full cursor-pointer hover:bg-gray-100 transition-all duration-300 border border-black/70 text-black/70 py-2 text-sm rounded-lg" onClick={modalClose}>

@@ -7,7 +7,7 @@ import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import { Link, useParams } from "react-router-dom";
 import products from "../utils/products";
 
-const ChatPage = () => {
+const ChatOffering = () => {
     const { id } = useParams();
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
@@ -97,7 +97,7 @@ const ChatPage = () => {
                                 <p className="text-xs">Seller</p>
                             </div>
                         </div>
-                        <div className="w-3 h-3 rounded-full bg-green animate-pulse"></div>
+                        <div className="w-3 h-3 rounded-full bg-green"></div>
                     </div>
                     <div className="mt-1 bg-white rounded-lg p-4 flex gap-x-2 justify-between items-center font-semibold w-full">
                         <div className="flex gap-x-2 items-center">
@@ -107,7 +107,7 @@ const ChatPage = () => {
                                 <p className="text-xs">Seller</p>
                             </div>
                         </div>
-                        <div className="w-3 h-3 rounded-full bg-gray-800 animate-pulse"></div>
+                        <div className="w-3 h-3 rounded-full bg-gray-800"></div>
                     </div>
                     <div className="mt-1 bg-white rounded-lg p-4 flex gap-x-2 justify-between items-center font-semibold w-full">
                         <div className="flex gap-x-2 items-center">
@@ -117,7 +117,7 @@ const ChatPage = () => {
                                 <p className="text-xs">Seller</p>
                             </div>
                         </div>
-                        <div className="w-3 h-3 rounded-full bg-gray-800 animate-pulse"></div>
+                        <div className="w-3 h-3 rounded-full bg-gray-800"></div>
                     </div>
 
                 </div>
@@ -132,7 +132,7 @@ const ChatPage = () => {
                                 <p className="font-semibold">Angely</p>
                                 <div className="flex gap-x-1 items-center">
                                     <p className="text-xs">online</p>
-                                    <div className="w-2 h-2 rounded-full bg-green animate-pulse pulse-strong"></div>
+                                    <div className="w-2 h-2 rounded-full bg-green"></div>
                                 </div>
                             </div>
                         </div>
@@ -159,10 +159,6 @@ const ChatPage = () => {
                     </div>
 
                     <div className="flex flex-col h-full overflow-y-auto md:p-5 p-3 space-y-5 w-full" ref={chatRef}>
-                        <div className="py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm bg-gray-300 text-black shadow-sm self-start text-left w-fit">
-                            <p className="mr-9 break-words">Halo, terimakasih sudah melihat produk saya!</p>
-                            <p className=" text-xs self-end text-black/40">11.37</p>
-                        </div>
                         {messages.map((msg, index) => (
                             <div
                                 key={index}
@@ -210,4 +206,4 @@ const ChatPage = () => {
     );
 }
 
-export default ChatPage;
+export default ChatOffering;
