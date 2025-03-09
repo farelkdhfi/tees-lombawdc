@@ -2,24 +2,37 @@ import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Avatar from '../assets/seller.png';
 import Avatar2 from '../assets/cust1.png';
-import { Camera, Plus, SendHorizonal, ShieldCheck, Smile, Image as ImageIcon } from "lucide-react";
+import { Camera, Plus, SendHorizonal, ShieldCheck, Smile, Image as ImageIcon, CheckCircle, XCircle, Truck, CreditCard } from "lucide-react";
 import { QuestionMarkCircleIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Link, useParams } from "react-router-dom";
 import products from "../utils/products";
+import ImageAnda from '../assets/imagedeals1.png'
 
-const ChatPage = () => {
+const ChatBarter = () => {
     const { id } = useParams();
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
     const chatRef = useRef(null);
     const [botIndex, setBotIndex] = useState(0);
     const lastMessageRef = useRef(null);
+    const [showBarterModal, setShowBarterModal] = useState(false); // State untuk modal barter
+    const [barterStep, setBarterStep] = useState(1); // Langkah proses barter
+    const [isBarterCompleted, setIsBarterCompleted] = useState(false); // State untuk menandai barter selesai
 
     // Menggabungkan semua produk dari berbagai kategori
     const allProducts = products.flatMap(category => category.items);
 
     // Mencari produk berdasarkan id
     const product = allProducts.find((item) => item.id === parseInt(id));
+
+    // Data produk yang ditawarkan pengguna (contoh statis)
+    const userProduct = {
+        name: "Sepatu Sneakers",
+        image: ImageAnda,
+        brand: "Nike",
+        size: "42",
+        location: "Jakarta"
+    };
 
     if (!product) {
         return <div className="text-center text-red-500 text-lg">Produk tidak ditemukan</div>;
@@ -48,11 +61,11 @@ const ChatPage = () => {
         setInput("");
 
         const botReplies = [
-            "Halo! Ada yang bisa saya bantu?",
-            "Bisa jelaskan lebih detail?",
-            "Baik, saya mengerti!",
-            "Itu menarik! Mari kita bahas lebih lanjut.",
-            "Terima kasih sudah bertanya!",
+            "Terima kasih atas penawarannya! Saya akan mempertimbangkan.",
+            "Boleh saya tahu alasan Anda ingin menukar produk ini?",
+            "Apakah Anda memiliki foto tambahan untuk produk yang Anda tawarkan?",
+            "Saya tertarik! Mari kita lanjutkan proses barter.",
+            "Maaf, saya memutuskan untuk tidak melanjutkan barter ini."
         ];
 
         setTimeout(() => {
@@ -80,8 +93,106 @@ const ChatPage = () => {
         }
     };
 
+    const handleAcceptBarter = () => {
+        setShowBarterModal(true); // Tampilkan modal barter
+    };
+
+    const handleDeclineBarter = () => {
+        setMessages((prev) => [
+            ...prev,
+            { text: "Anda telah menolak tawaran barter ini.", sender: "system" }
+        ]);
+    };
+
+    const handleNextStep = () => {
+        if (barterStep < 3) {
+            setBarterStep(barterStep + 1); // Lanjut ke langkah berikutnya
+        } else {
+            setShowBarterModal(false); // Tutup modal setelah selesai
+            setIsBarterCompleted(true); // Tandai barter selesai
+            setMessages((prev) => [
+                ...prev,
+                { text: "Barter telah berhasil diproses! Terima kasih.", sender: "system" }
+            ]);
+        }
+    };
+
     return (
         <main className="w-full flex pt-20 md:pt-30 h-[100dvh] px-3 lg:px-15 pb-20 lg:pb-0">
+            {/* Modal Barter */}
+            {showBarterModal && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+                    <div className="bg-white rounded-lg shadow-2xl w-full max-w-md mx-4 p-6">
+                        <h2 className="text-lg font-bold mb-4">Proses Barter</h2>
+
+                        {/* Langkah 1: Konfirmasi Barter */}
+                        {barterStep === 1 && (
+                            <div className="space-y-4">
+                                <p className="text-sm text-gray-700">Anda akan menukar:</p>
+                                <div className="flex gap-4">
+                                    <img src={product.image} alt={product.name} className="w-20 h-20 object-cover rounded-lg" />
+                                    <img src={userProduct.image} alt={userProduct.name} className="w-20 h-20 object-cover rounded-lg" />
+                                </div>
+                                <div className="text-sm text-gray-700">
+                                    <p><strong>Produk Anda:</strong> {userProduct.name}</p>
+                                    <p><strong>Produk Penjual:</strong> {product.name}</p>
+                                </div>
+                                <p className="text-sm text-gray-700">Pastikan detail barter sudah benar sebelum melanjutkan.</p>
+                            </div>
+                        )}
+
+                        {/* Langkah 2: Pembayaran (Opsional) */}
+                        {barterStep === 2 && (
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-2">
+                                    <CreditCard className="w-6 h-6 text-green-500" />
+                                    <p className="text-sm text-gray-700">Biaya tambahan: <strong>$5</strong> (ongkir dan biaya admin)</p>
+                                </div>
+                                <div className="bg-gray-100 p-4 rounded-lg">
+                                    <p className="text-sm text-gray-700">Silakan lakukan pembayaran ke rekening berikut:</p>
+                                    <p className="text-sm font-mono text-gray-900">1234 5678 9012 3456 (BCA)</p>
+                                </div>
+                                <p className="text-sm text-gray-700">Konfirmasi pembayaran setelah transfer.</p>
+                            </div>
+                        )}
+
+                        {/* Langkah 3: Pengiriman */}
+                        {barterStep === 3 && (
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-2">
+                                    <Truck className="w-6 h-6 text-green-500" />
+                                    <p className="text-sm text-gray-700">Proses pengiriman akan segera dimulai.</p>
+                                </div>
+                                <div className="bg-gray-100 p-4 rounded-lg">
+                                    <p className="text-sm text-gray-700">Silakan kirim produk Anda ke alamat berikut:</p>
+                                    <p className="text-sm font-mono text-gray-900">Jl. Contoh No. 123, Jakarta</p>
+                                </div>
+                                <p className="text-sm text-gray-700">Anda akan menerima notifikasi ketika produk sudah dikirim.</p>
+                            </div>
+                        )}
+
+                        {/* Tombol Aksi */}
+                        <div className="mt-6 flex justify-end gap-2">
+                            {barterStep > 1 && (
+                                <button
+                                    onClick={() => setBarterStep(barterStep - 1)}
+                                    className="px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200"
+                                >
+                                    Kembali
+                                </button>
+                            )}
+                            <button
+                                onClick={handleNextStep}
+                                className="px-4 py-2 text-sm text-white bg-green-500 rounded-lg hover:bg-green-600"
+                            >
+                                {barterStep === 3 ? "Selesai" : "Lanjut"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Konten Utama */}
             <div className="md:w-1/3 md:block hidden">
                 <div className="h-full bg-[#fafafa] p-5 overflow-hidden">
                     <div className="flex gap-x-2 items-center">
@@ -125,6 +236,7 @@ const ChatPage = () => {
 
             <div className="md:w-2/3 w-full relative">
                 <div className="flex flex-col justify-between bg-[#ffffff] h-full overflow-hidden">
+
                     <div className="bg-[#fff] border-b justify-between border-black/15 w-full text-black/70 flex items-center gap-x-2 p-3">
                         <div className="flex gap-x-2">
                             <img src={Avatar} alt="" className="w-10 rounded-full" />
@@ -159,17 +271,33 @@ const ChatPage = () => {
                     </div>
 
                     <div className="flex flex-col h-full overflow-y-auto md:p-5 p-3 space-y-5 w-full" ref={chatRef}>
+                        {/* Pesan Pembuka */}
                         <div className="py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm bg-gray-100 text-black shadow-lg self-start text-left w-fit">
-                            <p className="mr-9 break-words">Halo, terimakasih sudah melihat produk saya!</p>
+                            <p className="mr-9 break-words">Halo! Terima kasih sudah mengajukan barter untuk produk ini. Mari kita diskusikan lebih lanjut.</p>
                             <p className="text-xs self-end text-black/40">11.37</p>
                         </div>
+
+                        {/* Detail Produk yang Dibarter */}
+                        <div className="py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm bg-gray-100 text-black shadow-lg self-start text-left w-fit">
+                            <p className="font-semibold mb-2">Produk yang Anda Tawarkan:</p>
+                            <img src={userProduct.image} alt="Produk Anda" className="w-40 rounded-lg mb-2" />
+                            <p><strong>Nama:</strong> {userProduct.name}</p>
+                            <p><strong>Brand:</strong> {userProduct.brand}</p>
+                            <p><strong>Ukuran:</strong> {userProduct.size}</p>
+                            <p><strong>Lokasi:</strong> {userProduct.location}</p>
+                            <p className="text-xs self-end text-black/40">11.37</p>
+                        </div>
+
+                        {/* Pesan dari Pengguna dan Bot */}
                         {messages.map((msg, index) => (
                             <div
                                 key={index}
                                 ref={index === messages.length - 1 ? lastMessageRef : null}
                                 className={`py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm ${msg.sender === "user"
                                     ? "bg-gray-50 text-black/70 shadow-lg self-end text-start w-fit"
-                                    : "bg-gray-100 text-black shadow-lg self-start text-left w-fit"
+                                    : msg.sender === "system"
+                                        ? "bg-blue-100 text-blue-800 shadow-lg self-center text-center w-fit"
+                                        : "bg-gray-100 text-black shadow-lg self-start text-left w-fit"
                                     }`}
                             >
                                 {msg.text && <p className="mr-9 break-words">{msg.text}</p>}
@@ -178,8 +306,28 @@ const ChatPage = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mt-2 text-black/70 bg-[#fff] border-t border-t-black/30 w-full p-3 sm:p-4 md:p-5">
-                        {/* upload image */}
+                    {/* Tombol Setujui dan Batalkan Barter */}
+                    {!isBarterCompleted && (
+                        <div className="flex justify-between items-center gap-4 p-4 bg-white border-t border-t-black/30">
+                            <button
+                                onClick={handleAcceptBarter}
+                                className="flex items-center gap-2 px-4 py-2 bg-green-800/80 text-white rounded-lg hover:bg-green-600 transition-colors"
+                            >
+                                <CheckCircle className="w-5 h-5" />
+                                Setujui Barter
+                            </button>
+                            <button
+                                onClick={handleDeclineBarter}
+                                className="flex items-center gap-2 px-4 py-2 bg-red-800/80 text-white rounded-lg hover:bg-red-600 transition-colors"
+                            >
+                                <XCircle className="w-5 h-5" />
+                                Batalkan Barter
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Input Area */}
+                    <div className="flex items-center gap-2 sm:gap-4 md:gap-6 text-black/70 bg-[#fff] border-t border-t-black/30 w-full p-3 sm:p-4 md:p-5">
                         <input type="file" accept="image/*" className="hidden" id="imageUpload" onChange={handleImageUpload} />
                         <button onClick={() => document.getElementById("imageUpload").click()}>
                             <Plus className="w-5 h-5 hover:text-green-500 transition-colors" />
@@ -203,9 +351,10 @@ const ChatPage = () => {
                         </button>
                     </div>
                 </div>
+
             </div>
         </main>
     );
 }
 
-export default ChatPage;
+export default ChatBarter;

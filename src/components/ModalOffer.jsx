@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Logo from '../assets/tees.png'
+import React, { useEffect } from 'react';
 
 const ModalOffer = ({ isOffering, offeringClose }) => {
 
