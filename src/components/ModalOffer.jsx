@@ -17,11 +17,17 @@ const ModalOffer = ({ isOffering, offeringClose }) => {
   if (!isOffering) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50 text-black/70 z-50 px-4 sm:px-6 md:px-8">
-      <div className="bg-white py-10 p-5 md:p-8 rounded-lg shadow-xl w-fit flex flex-col items-center max-h-[90vh] overflow-y-auto space-y-2 text-sm">
-       <p>You are offering a discount of</p>
-       <p className='text-3xl font-black'>50%</p>
-       <button onClick={offeringClose} className='bg-green cursor-pointer font-semibold text-white py-2 px-3 rounded-lg'>Continue</button>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 px-4 sm:px-6 md:px-8">
+      <div className="bg-white py-8 px-6 md:py-10 md:px-12 rounded-lg shadow-2xl w-xs flex flex-col items-center max-h-[90vh] overflow-y-auto text-gray-800 text-center">
+        <p className="text-lg font-medium">You are offering a discount of</p>
+        <p className="text-6xl font-extrabold text-green-800 mt-2">50%</p>
+        <p className="text-sm text-gray-600 mt-1">Continue the conversation in chat instead.</p>
+        <button 
+          onClick={offeringClose} 
+          className="mt-6 bg-green cursor-pointer hover:bg-green-800/80 transition-all duration-300 text-white font-semibold py-2 px-6 rounded-lg shadow-md"
+        >
+          Continue
+        </button>
       </div>
     </div>
   );

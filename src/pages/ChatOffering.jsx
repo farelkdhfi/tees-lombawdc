@@ -55,7 +55,7 @@ const ChatOffering = () => {
         // Delay sebelum bot membalas
         setTimeout(() => {
             const botReplies = [
-                { text: "Halo! Ada yang bisa saya bantu?", sender: "bot" },
+                { text: "Halo! sepertinya saya keberatan dengan offering discount anda", sender: "bot" },
                 {
                     text: `Saya memberikan maksimal diskon dengan harga: $${(product.price - 5).toFixed(2)}`,
                     sender: "bot",
@@ -69,7 +69,7 @@ const ChatOffering = () => {
                     ]
                 },
                 { text: "Baik, saya mengerti!", sender: "bot" },
-                { text: "Itu menarik! Mari kita bahas lebih lanjut.", sender: "bot" },
+                { text: "Semoga hari anda menyenangkan.", sender: "bot" },
                 { text: "Terima kasih sudah bertanya!", sender: "bot" }
             ];
 
