@@ -208,7 +208,7 @@ const ChatOffering = () => {
                                         {msg.buttons.map((btn, i) => (
                                             <button
                                                 key={i}
-                                                className="px-3 py-2 bg-green text-white rounded-lg text-xs"
+                                                className="px-3 py-2 bg-green hover:bg-green-800/80 transition-all duration-300 cursor-pointer text-white rounded-lg text-sm"
                                                 onClick={btn.action}
                                             >
                                                 {btn.text}
