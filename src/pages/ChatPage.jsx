@@ -159,7 +159,7 @@ const ChatPage = () => {
                     </div>
 
                     <div className="flex flex-col h-full overflow-y-auto md:p-5 p-3 space-y-5 w-full" ref={chatRef}>
-                        <div className="py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm bg-gray-300 text-black shadow-sm self-start text-left w-fit">
+                        <div className="py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm bg-gray-100 text-black shadow-lg self-start text-left w-fit">
                             <p className="mr-9 break-words">Halo, terimakasih sudah melihat produk saya!</p>
                             <p className=" text-xs self-end text-black/40">11.37</p>
                         </div>
@@ -168,8 +168,8 @@ const ChatPage = () => {
                                 key={index}
                                 ref={index === messages.length - 1 ? lastMessageRef : null}
                                 className={`py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm ${msg.sender === "user"
-                                    ? "bg-gray-100 text-black/70 shadow-sm self-end text-start w-fit"
-                                    : "bg-gray-300 text-black shadow-sm self-start text-left w-fit"
+                                    ? "bg-gray-50 text-black/70 shadow-lg self-end text-start w-fit"
+                                    : "bg-gray-100 text-black shadow-lg self-start text-left w-fit"
                                     }`}
                             >
                                 {msg.text && <p className="mr-9 break-words">{msg.text}</p>}
