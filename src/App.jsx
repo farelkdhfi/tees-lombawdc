@@ -11,24 +11,47 @@ import GetStartedModal from './utils/GetStartedModal';
 import DetailPage from './pages/DetailPage';
 import ChatPage from './pages/ChatPage';
 import ChatOffering from './pages/ChatOffering';
+import ModalOffer from './components/ModalOffer';
 
 const AppContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOfferingOpen, setIsOfferingOpen] = useState(false);
   const location = useLocation(); // Untuk mendapatkan path saat ini
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsModalOpen(true);
-    }, 700);
+    if (location.pathname === "/") {
+      const timer = setTimeout(() => {
+        setIsModalOpen(true);
+      }, 700);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    } else {
+      setIsModalOpen(false);
+    }
+  }, [location.pathname]); // Efek berjalan saat path berubah
+
+
+  useEffect(() => {
+    // Cek apakah path sesuai dengan /offer/:id
+    const isOfferPage = /^\/offer\/\d+$/.test(location.pathname);
+    
+    if (isOfferPage) {
+      const timer = setTimeout(() => {
+        setIsOfferingOpen(true);
+      }, 700);
+      
+      return () => clearTimeout(timer);
+    } else {
+      setIsOfferingOpen(false);
+    }
+  }, [location.pathname]); // Efek akan berjalan setiap path berubah
 
   return (
     <>
       <ScrollToTop />
       <Navbar />
       <GetStartedModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <ModalOffer isOffering={isOfferingOpen} offeringClose={() => setIsOfferingOpen(false)} />
       <main className={`${isModalOpen ? 'pointer-events-none' : ''}`}>
         <Routes>
           <Route path="/" element={<HomePage />} />

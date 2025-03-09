@@ -6,6 +6,7 @@ import { Camera, Plus, SendHorizonal, ShieldCheck } from "lucide-react";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import { Link, useParams } from "react-router-dom";
 import products from "../utils/products";
+import BuyNow from "../components/BuyNow";
 
 const ChatOffering = () => {
     const { id } = useParams();
@@ -14,6 +15,8 @@ const ChatOffering = () => {
     const chatRef = useRef(null);
     const [botIndex, setBotIndex] = useState(0);
     const lastMessageRef = useRef(null);
+      const [modalOpen, setModalOpen] = useState(false)
+    
 
     // Menggabungkan semua produk dari berbagai kategori
     const allProducts = products.flatMap(category => category.items);
@@ -44,22 +47,49 @@ const ChatOffering = () => {
 
     const sendMessage = () => {
         if (input.trim() === "") return;
-        setMessages([...messages, { text: input, sender: "user" }]);
+
+        // Tambahkan pesan pengguna ke dalam state
+        setMessages((prev) => [...prev, { text: input, sender: "user" }]);
         setInput("");
 
-        const botReplies = [
-            "Halo! Ada yang bisa saya bantu?",
-            "Bisa jelaskan lebih detail?",
-            "Baik, saya mengerti!",
-            "Itu menarik! Mari kita bahas lebih lanjut.",
-            "Terima kasih sudah bertanya!",
-        ];
-
+        // Delay sebelum bot membalas
         setTimeout(() => {
-            setMessages((prev) => [...prev, { text: botReplies[botIndex], sender: "bot" }]);
+            const botReplies = [
+                { text: "Halo! Ada yang bisa saya bantu?", sender: "bot" },
+                {
+                    text: `Saya memberikan maksimal diskon dengan harga: $${product.price - 5}`,
+                    sender: "bot",
+                    image: product.image,
+                    buttons: [
+                        { text: "Buy Now", action: () => { 
+                            handleButtonResponse("Anda memilih 'Buy Now', pesanan diproses..."); 
+                            setModalOpen(true);
+                        }},
+                        { text: "Cancel", action: () => handleButtonResponse("Anda memilih 'Cancel', offering dihentikan.") }
+                    ]
+                },
+                { text: "Baik, saya mengerti!", sender: "bot" },
+                { text: "Itu menarik! Mari kita bahas lebih lanjut.", sender: "bot" },
+                { text: "Terima kasih sudah bertanya!", sender: "bot" }
+            ];
+
+            // Pastikan indeks tidak keluar batas
+            const nextBotMessage = botReplies[botIndex] || botReplies[0];
+
+            // Tambahkan pesan bot ke dalam state
+            setMessages((prev) => [...prev, nextBotMessage]);
+
+            // Update indeks bot untuk balasan berikutnya
             setBotIndex((prevIndex) => (prevIndex + 1) % botReplies.length);
         }, 1000);
     };
+
+    // Fungsi untuk menangani respons tombol
+    const handleButtonResponse = (responseText) => {
+        setMessages((prev) => [...prev, { text: responseText, sender: "user" }]);
+    };
+
+
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -163,18 +193,36 @@ const ChatOffering = () => {
                             <div
                                 key={index}
                                 ref={index === messages.length - 1 ? lastMessageRef : null}
-                                className={`py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm ${msg.sender === "user"
-                                    ? "bg-gray-100 text-black/70 shadow-sm self-end text-start w-fit"
-                                    : "bg-gray-300 text-black shadow-sm self-start text-left w-fit"
+                                className={`py-2 flex flex-col justify-between px-3 rounded-lg max-w-[15rem] md:max-w-xs text-xs md:text-sm 
+                                    ${msg.sender === "user"
+                                        ? "bg-gray-50 text-black/70 shadow-lg self-end text-start w-fit"
+                                        : msg.text.includes("diskon") || msg.text.includes("harga") // Cek apakah ada kata diskon/harga
+                                            ? "bg-gray-100 text-black shadow-lg border-2 border-green self-start text-left w-fit"
+                                            : "bg-gray-100 text-black shadow-lg self-start text-left w-fit"
                                     }`}
                             >
                                 {msg.text && <p className="mr-9 break-words">{msg.text}</p>}
                                 {msg.image && <img src={msg.image} alt="Uploaded" className="w-40 rounded-lg mt-2" />}
-                                <p className=" text-xs self-end text-black/40">11.37</p>
+                                {msg.buttons && (
+                                    <div className="mt-2 flex gap-2">
+                                        {msg.buttons.map((btn, i) => (
+                                            <button
+                                                key={i}
+                                                className="px-3 py-2 bg-green text-white rounded-lg text-xs"
+                                                onClick={btn.action}
+                                            >
+                                                {btn.text}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                                <p className="text-xs self-end text-black/40">11.37</p>
                             </div>
                         ))}
+
+
                     </div>
-                    <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mt-2 text-black/70 bg-[#fff] border-t border-t-black/30 w-full p-3 sm:p-4 md:p-5">
+                    <div className="flex items-center gap-2 sm:gap-4 md:gap-6 text-black/70 bg-[#fff] border-t border-t-black/30 w-full p-3 sm:p-4 md:p-5">
                         {/* upload image */}
                         <input type="file" accept="image/*" className="hidden" id="imageUpload" onChange={handleImageUpload} />
                         <button onClick={() => document.getElementById("imageUpload").click()}>
@@ -201,7 +249,7 @@ const ChatOffering = () => {
 
                 </div>
             </div>
-
+            <BuyNow modalOpen={modalOpen} modalClose={() => setModalOpen(false)} />
         </main>
     );
 }
