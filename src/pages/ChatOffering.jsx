@@ -57,7 +57,7 @@ const ChatOffering = () => {
             const botReplies = [
                 { text: "Halo! Ada yang bisa saya bantu?", sender: "bot" },
                 {
-                    text: `Saya memberikan maksimal diskon dengan harga: $${product.price - 5}`,
+                    text: `Saya memberikan maksimal diskon dengan harga: $${(product.price - 5).toFixed(2)}`,
                     sender: "bot",
                     image: product.image,
                     buttons: [
@@ -162,7 +162,7 @@ const ChatOffering = () => {
                                 <p className="font-semibold">Angely</p>
                                 <div className="flex gap-x-1 items-center">
                                     <p className="text-xs">online</p>
-                                    <div className="w-2 h-2 rounded-full bg-green"></div>
+                                    <div className="w-2 h-2 rounded-full bg-green animate-pulse pulse-strong"></div>
                                 </div>
                             </div>
                         </div>
@@ -197,7 +197,7 @@ const ChatOffering = () => {
                                     ${msg.sender === "user"
                                         ? "bg-gray-50 text-black/70 shadow-lg self-end text-start w-fit"
                                         : msg.text.includes("diskon") || msg.text.includes("harga") // Cek apakah ada kata diskon/harga
-                                            ? "bg-gray-100 text-black shadow-lg border-2 border-green self-start text-left w-fit"
+                                            ? "bg-gray-100 text-black shadow-lg border border-green/30 self-start text-left w-fit"
                                             : "bg-gray-100 text-black shadow-lg self-start text-left w-fit"
                                     }`}
                             >
