@@ -70,7 +70,7 @@ const MainLayoutAcc = () => {
                 onClick={() => setActiveTab('myproduct')}
               >
                 <Store size={20} />
-                <span>My Product</span>
+                <span>My Store</span>
               </li>
               <li
                 className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer ${activeTab === 'order' ? 'bg-green-50 text-green-600' : 'text-black/70 hover:bg-gray-50'

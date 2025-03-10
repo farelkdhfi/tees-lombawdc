@@ -8,6 +8,7 @@ import Payment from '../assets/payments.png';
 const Cart = () => {
     const allProducts = products.flatMap(category => category.items);
     const [cartItems, setCartItems] = useState(allProducts.slice(0, 3)); // Hanya mengambil 3 produk untuk contoh
+    const [selectedItems, setSelectedItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(cartItems.reduce((total, item) => total + item.price, 0));
     const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -19,7 +20,20 @@ const Cart = () => {
         setTotalPrice(updatedCart.reduce((total, item) => total + item.price, 0));
     };
 
+    const handleCheckboxChange = (id) => {
+        const isSelected = selectedItems.includes(id);
+        if (isSelected) {
+            setSelectedItems(selectedItems.filter(itemId => itemId !== id));
+        } else {
+            setSelectedItems([...selectedItems, id]);
+        }
+    };
+
     const handleCheckout = () => {
+        if (selectedItems.length === 0) {
+            alert("Please select at least one item to checkout.");
+            return;
+        }
         setIsCheckoutModalOpen(true);
     };
 
@@ -38,10 +52,15 @@ const Cart = () => {
         setTimeout(() => {
             setShowSuccessModal(false);
             setIsCheckoutModalOpen(false);
-            setCartItems([]); // Kosongkan keranjang setelah checkout
-            setTotalPrice(0);
+            setCartItems(cartItems.filter(item => !selectedItems.includes(item.id))); // Hapus produk yang dipilih dari keranjang
+            setSelectedItems([]); // Reset selected items
+            setTotalPrice(cartItems.filter(item => !selectedItems.includes(item.id)).reduce((total, item) => total + item.price, 0));
         }, 7000);
     };
+
+    const selectedTotalPrice = cartItems
+        .filter(item => selectedItems.includes(item.id))
+        .reduce((total, item) => total + item.price, 0);
 
     return (
         <section className='pt-20 md:pt-30 px-4 lg:px-16'>
@@ -57,23 +76,29 @@ const Cart = () => {
                 {/* Daftar Produk di Cart */}
                 <div className="lg:w-2/3">
                     {cartItems.map((product) => (
-                        <div key={product.id} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200 mb-4">
+                        <div key={product.id} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200 mb-4">
                             <div className="flex flex-col md:flex-row gap-6">
+                                <input
+                                    type="checkbox"
+                                    checked={selectedItems.includes(product.id)}
+                                    onChange={() => handleCheckboxChange(product.id)}
+                                    className="ml-4 mt-4"
+                                />
                                 <img
                                     src={product.image}
                                     alt={product.name}
                                     className="w-full md:w-32 h-32 object-cover rounded-lg"
                                 />
-                                <div className="flex-1">
+                                <div className="flex-1 p-4">
                                     <div className="flex justify-between items-center">
                                         <h3 className="font-semibold text-gray-800 text-lg">{product.name}</h3>
                                         <button onClick={() => removeItemFromCart(product.id)} className="text-gray-500 hover:text-red-500 transition-colors duration-200">
                                             <Trash2 className="w-5 h-5" />
                                         </button>
                                     </div>
-                                    <p className="text-gray-500 text-sm mt-1">{product.brand}</p>
-                                    <p className="text-gray-600 text-sm mt-2">{product.description}</p>
-                                    <div className="flex justify-between items-center mt-4">
+                                    <p className="text-gray-500 text-sm ">{product.brand}</p>
+                                    <p className="text-gray-600 text-sm">{product.description}</p>
+                                    <div className="flex justify-between items-center">
                                         <p className="text-xl text-gray-800 font-semibold">${product.price}</p>
                                         <p className="text-green-600 text-sm">{product.location}</p>
                                     </div>
@@ -89,7 +114,7 @@ const Cart = () => {
                     <div className="space-y-4">
                         <div className="flex justify-between">
                             <p className="text-gray-600">Subtotal</p>
-                            <p className="font-semibold text-gray-800">${totalPrice.toFixed(2)}</p>
+                            <p className="font-semibold text-gray-800">${selectedTotalPrice.toFixed(2)}</p>
                         </div>
                         <div className="flex justify-between">
                             <p className="text-gray-600">Shipping</p>
@@ -97,11 +122,11 @@ const Cart = () => {
                         </div>
                         <div className="flex justify-between">
                             <p className="text-gray-600">Tax</p>
-                            <p className="font-semibold text-gray-800">${(totalPrice * 0.1).toFixed(2)}</p>
+                            <p className="font-semibold text-gray-800">${(selectedTotalPrice * 0.1).toFixed(2)}</p>
                         </div>
                         <div className="flex justify-between border-t pt-4">
                             <p className="text-gray-600 font-semibold">Total</p>
-                            <p className="font-semibold text-gray-800">${(totalPrice + 5 + (totalPrice * 0.1)).toFixed(2)}</p>
+                            <p className="font-semibold text-gray-800">${(selectedTotalPrice + 5 + (selectedTotalPrice * 0.1)).toFixed(2)}</p>
                         </div>
                     </div>
                     <button 
@@ -122,7 +147,7 @@ const Cart = () => {
                             <div className='w-full md:w-3/5'>
                                 <h2 className="text-lg font-semibold mb-3 sm:mb-4">Fast Payment</h2>
                                 <div className='space-y-4'>
-                                    {cartItems.map((product) => (
+                                    {cartItems.filter(item => selectedItems.includes(item.id)).map((product) => (
                                         <div key={product.id} className='flex flex-col sm:flex-row gap-3'>
                                             <img src={product.image} alt="" className='h-20 w-30' />
                                             <div>
@@ -161,7 +186,7 @@ const Cart = () => {
                                 <div className='bg-white border border-black/5 rounded-lg p-4'>
                                     <p className='mb-7 font-semibold'>Order Summary</p>
                                     <ul className='space-y-4 mb-7'>
-                                        <p className='flex justify-between'>Price: <span>${totalPrice.toFixed(2)}</span></p>
+                                        <p className='flex justify-between'>Price: <span>${selectedTotalPrice.toFixed(2)}</span></p>
                                         <p className='flex justify-between'>Buyer Protection fee: <span>$1.30</span></p>
                                         <p className='flex justify-between'>Shipping: <span>$12.44</span></p>
                                         <p className='flex justify-between'>Sales tax: <span>To be confirmed</span></p>
