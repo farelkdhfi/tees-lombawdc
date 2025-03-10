@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import products from "../utils/products";
 import { Link, useParams } from "react-router-dom";
-import { Heart } from "lucide-react";
+import { Heart, SearchIcon } from "lucide-react";
 
 const RecentlyUploaded = () => {
     const { id } = useParams();
@@ -66,12 +66,19 @@ const RecentlyUploaded = () => {
             <div ref={productRef} className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-3 md:gap-3 gap-2">
                 {activeCategory.items.slice(0, visibleProducts).map((product) => (
                     <Link to={`/product/${product.id}`}>
-                        <div key={product.id} className="bg-white rounded-2xl shadow-lg border border-black/10 w-full">
+                        <div key={product.id} className="bg-white rounded-2xl shadow-lg border overflow-hidden border-black/10 w-full">
+                            <div className="relative">
                             <img
                                 src={product.image}
                                 alt={product.name}
                                 className="w-full h-auto md:h-80 object-cover rounded-md md:mb-2"
                             />
+                                {/* Icon Search */}
+                                <div className="absolute inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-white to-50% backdrop-blur-md">
+                                    <SearchIcon className="w-10 h-10 text-black/70 bg-white/80 rounded-full p-2 shadow-md" />
+                                </div>
+                            </div>
+                            
                             <div className=" md:p-4 p-2">
                                 <div className="flex justify-between items-center">
                                     <h3 className="font-semibold text-black/70 md:text-lg text-sm">{product.name}</h3>

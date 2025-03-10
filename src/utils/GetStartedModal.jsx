@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '../assets/tees.png'
+import Logo from '../assets/tees.png';
 
 const GetStartedModal = ({ isOpen, onClose }) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -22,13 +22,13 @@ const GetStartedModal = ({ isOpen, onClose }) => {
       <div className="bg-white py-10 p-5 md:p-8 rounded-lg shadow-xl max-w-md sm:max-w-lg w-full flex flex-col items-center max-h-[90vh] overflow-y-auto">
         <img src={Logo} alt="" className='w-25 mb-4' />
         <p className="text-gray-600 leading-relaxed text-start mb-4 text-xs md:text-sm">
-          Di era modern ini, kesadaran akan fashion berkelanjutan semakin meningkat. Industri pakaian bekas kini menjadi solusi bagi mereka yang ingin tampil stylish tanpa mengorbankan lingkungan.
+          In this modern era, awareness of sustainable fashion is increasing. The second-hand clothing industry has now become a solution for those who want to look stylish without compromising the environment.
         </p>
         <p className="text-gray-600 leading-relaxed text-start mb-4 text-xs md:text-sm">
-          Platform ini tidak hanya tempat jual beli pakaian bekas, tetapi juga wadah edukasi tentang pentingnya fashion berkelanjutan. Dengan konsep circular fashion, setiap pengguna dapat memberikan kehidupan baru bagi pakaian mereka.
+          This platform is not just a place to buy and sell second-hand clothes, but also an educational hub about the importance of sustainable fashion. With the concept of circular fashion, every user can give new life to their clothes.
         </p>
         <p className="text-gray-600 leading-relaxed text-start mb-6 text-xs md:text-sm">
-          Selain manfaat lingkungan, platform ini juga membuka peluang bisnis bagi individu dan pelaku usaha kecil dengan sistem transaksi yang transparan dan pengalaman belanja yang menyenangkan.
+          In addition to environmental benefits, this platform also opens up business opportunities for individuals and small businesses with a transparent transaction system and an enjoyable shopping experience.
         </p>
         <div className="flex flex-wrap self-start gap-2 mb-4">
           <input
@@ -39,9 +39,9 @@ const GetStartedModal = ({ isOpen, onClose }) => {
             className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 border-gray-300 rounded focus:ring focus:ring-blue-500"
           />
           <label htmlFor="agreement" className="text-gray-700 text-xs flex gap-x-2">
-            Saya menyetujui 
+            I agree to the 
           </label>
-          <p className="text-blue-500 underline text-xs">syarat & ketentuan</p>
+          <p className="text-blue-500 underline text-xs">terms & conditions</p>
         </div>
         <button
           onClick={onClose}

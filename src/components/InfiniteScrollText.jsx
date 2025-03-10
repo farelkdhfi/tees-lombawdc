@@ -29,7 +29,7 @@ const InfiniteScrollText = () => {
   return (
     <div ref={marqueeRef} className="whitespace-nowrap w-full text-black/70 bg-[#fff] h-10 flex items-center z-[9999]" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className="inline-block text-[10px]">
-        {"     "} {""} Fashion Berkelanjutan, Bumi Lebih Nyaman! &nbsp; • &nbsp; Fashion Berkelanjutan, Bumi Lebih Nyaman! &nbsp; • &nbsp; Fashion Berkelanjutan, Bumi Lebih Nyaman! &nbsp; • &nbsp; 
+        {"     "} {""} Sustainable Fashion, A More Comfortable Earth! &nbsp; • &nbsp; Sustainable Fashion, A More Comfortable Earth! &nbsp; • &nbsp; Sustainable Fashion, A More Comfortable Earth! &nbsp; • &nbsp; 
       </div>
     </div>
   );
