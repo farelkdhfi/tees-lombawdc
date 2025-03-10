@@ -112,7 +112,7 @@ const Tips = () => {
           
           {/* Lottie Animation */}
           <div ref={lottieRef} className="flex justify-center mb-12">
-            <Lottie animationData={animationData} loop={true} style={{ width: 200, height: 200 }} />
+            <Lottie animationData={animationData} loop={true} style={{ width: 400, height: 400 }} />
           </div>
 
           <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
