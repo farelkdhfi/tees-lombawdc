@@ -456,7 +456,7 @@ export default function Navbar() {
 
                             </div>
 
-                            <Link onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className=" hidden lg:flex text-white bg-[#3D9970] p-1 text-sm rounded-sm px-3">Sell Now!</Link>
+                            <Link to="/sell" onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className=" hidden lg:flex text-white bg-[#3D9970] p-1 text-sm rounded-sm px-3">Sell Now!</Link>
                             <div onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="text-black/50 text-base hidden lg:flex">
                                 <ShoppingBagIcon className="w-5" />
                             </div>

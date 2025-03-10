@@ -13,6 +13,8 @@ import ChatPage from './pages/ChatPage';
 import ChatOffering from './pages/ChatOffering';
 import ModalOffer from './components/ModalOffer';
 import ChatBarter from './pages/ChatBarter';
+import Sell from './pages/Sell';
+import MainLayoutAcc from './accountpages/MainLayoutAcc';
 
 const AppContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,6 +65,8 @@ const AppContent = () => {
           <Route path="/chat/:id" element={<ChatPage />} />
           <Route path="/offer/:id" element={<ChatOffering />} />
           <Route path="/barter/:id" element={<ChatBarter />} />
+          <Route path="/sell" element={<Sell />} />
+          <Route path="/profile" element={<MainLayoutAcc />} />
         </Routes>
       </main>
       {/* Footer hanya ditampilkan jika bukan di halaman /chat */}

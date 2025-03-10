@@ -61,7 +61,7 @@ const SignInUp = ({ openLogin, closeLogin }) => {
                         placeholder="Password"
                         className="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                     />
-                    <Link onClick={closeLogin} to="/women" className="block w-full">
+                    <Link onClick={closeLogin} to="/profile" className="block w-full">
                         <p className="bg-[#3D9970] mx-auto text-center text-sm text-white py-2 sm:py-3 rounded-lg font-semibold hover:bg-green-800 transition">
                             {isSignUp ? "Sign Up" : "Sign In"}
                         </p>
