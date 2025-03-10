@@ -106,7 +106,7 @@ const Cart = () => {
                     </div>
                     <button 
                         onClick={handleCheckout} 
-                        className="w-full bg-blue-600 text-white py-3 rounded-lg mt-6 hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2"
+                        className="w-full bg-green text-white py-3 rounded-lg mt-6 hover:bg-green-800/80 transition-colors duration-200 flex items-center justify-center gap-2"
                     >
                         <ShoppingCart className="w-5 h-5" />
                         <span>Checkout</span>
