@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lottie from 'lottie-react';
+import animationData from '../animation/education-animation.json'; // Contoh animasi Lottie
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -36,34 +38,35 @@ const icons = {
 
 const tips = [
   {
-    title: 'Beli Pakaian Bekas',
-    fact: 'Industri fashion menyumbang 10% dari emisi karbon global. Membeli pakaian bekas bisa mengurangi limbah tekstil!',
+    title: 'Buy Secondhand Clothing',
+    fact: 'The fashion industry contributes to 10% of global carbon emissions. Buying secondhand clothing can reduce textile waste!',
     icon: icons.buy,
   },
   {
-    title: 'Pilih Bahan Ramah Lingkungan',
-    fact: 'Kapas organik menggunakan 91% lebih sedikit air dibandingkan kapas konvensional.',
+    title: 'Choose Eco-Friendly Materials',
+    fact: 'Organic cotton uses 91% less water compared to conventional cotton.',
     icon: icons.eco,
   },
   {
-    title: 'Kurangi Fast Fashion',
-    fact: 'Rata-rata, satu orang membuang sekitar 30 kg pakaian per tahun. Kurangi konsumsi dengan membeli lebih sedikit tapi berkualitas.',
+    title: 'Reduce Fast Fashion',
+    fact: 'On average, a person throws away around 30 kg of clothing per year. Reduce consumption by buying less but higher quality items.',
     icon: icons.clock,
   },
   {
-    title: 'Daur Ulang atau Upcycle',
-    fact: 'Hanya 15% dari pakaian yang dibuang didaur ulang. Gunakan kreativitas untuk mengubah pakaian lama menjadi sesuatu yang baru!',
+    title: 'Recycle or Upcycle',
+    fact: 'Only 15% of discarded clothing is recycled. Use your creativity to turn old clothes into something new!',
     icon: icons.recycle,
   },
   {
-    title: 'Cuci dengan Bijak',
-    fact: 'Mencuci pakaian dengan air dingin dan mengeringkan secara alami dapat mengurangi jejak karbon hingga 50%!',
+    title: 'Wash Wisely',
+    fact: 'Washing clothes in cold water and air-drying can reduce your carbon footprint by up to 50%!',
     icon: icons.wash,
   },
 ];
 
 const Tips = () => {
   const tipsRef = useRef([]);
+  const lottieRef = useRef();
 
   useEffect(() => {
     tipsRef.current.forEach((tip, index) => {
@@ -83,29 +86,59 @@ const Tips = () => {
         }
       );
     });
+
+    // Animasi Lottie saat komponen muncul
+    gsap.fromTo(
+      lottieRef.current,
+      { opacity: 0, scale: 0.8 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: lottieRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
   }, []);
 
   return (
-    <section className='pt-20 md:pt-30 px-3 lg:px-15 pb-20 bg-gray-50 min-h-screen'>
-      <div className='max-w-6xl mx-auto'>
-        <h2 className='text-4xl font-bold text-center text-gray-800 mb-12 mt-10'>Tips & Trick Fashion Berkelanjutan</h2>
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {tips.map((tip, index) => (
-            <div
-              key={index}
-              ref={el => tipsRef.current[index] = el}
-              className='p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300'
-            >
-              <div className='flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4'>
-                {tip.icon}
+    <>
+      <section className='pt-20 md:pt-30 px-3 lg:px-15 pb-20 bg-gray-50 min-h-screen'>
+        <div className='max-w-6xl mx-auto'>
+          <h2 className='text-4xl font-bold text-center text-gray-800 mb-12 mt-10'>Tips & Tricks for Sustainable Fashion</h2>
+          
+          {/* Lottie Animation */}
+          <div ref={lottieRef} className="flex justify-center mb-12">
+            <Lottie animationData={animationData} loop={true} style={{ width: 200, height: 200 }} />
+          </div>
+
+          <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+            {tips.map((tip, index) => (
+              <div
+                key={index}
+                ref={el => tipsRef.current[index] = el}
+                className='p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer'
+                onMouseEnter={() => {
+                  gsap.to(tipsRef.current[index], { scale: 1.05, duration: 0.3 });
+                }}
+                onMouseLeave={() => {
+                  gsap.to(tipsRef.current[index], { scale: 1, duration: 0.3 });
+                }}
+              >
+                <div className='flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4'>
+                  {tip.icon}
+                </div>
+                <h3 className='text-xl font-semibold text-gray-800 mb-2'>{tip.title}</h3>
+                <p className='text-gray-600 leading-relaxed'>{tip.fact}</p>
               </div>
-              <h3 className='text-xl font-semibold text-gray-800 mb-2'>{tip.title}</h3>
-              <p className='text-gray-600 leading-relaxed'>{tip.fact}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
