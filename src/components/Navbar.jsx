@@ -10,6 +10,14 @@ import { ShoppingBagIcon, UserIcon } from "@heroicons/react/24/outline";
 import Logo from '../assets/tees.png'
 import Img1 from '../assets/Imagesrecently1.png'
 import Img2 from '../assets/Imagesrecently2.png'
+
+import Img3 from '../assets/man-jacket/menjack.png'
+import Img4 from '../assets/man-jacket/menjack2.png'
+
+import Img5 from '../assets/women-blazzer/womenblazzer.png'
+import Img6 from '../assets/women-blazzer/womenblazzer2.png'
+
+
 import { List, ShoppingBag, Store, User, X } from "lucide-react";
 import SignInUp from "../accountpages/SignInUp";
 
@@ -282,7 +290,6 @@ export default function Navbar() {
                                 <Link to="/men" onClick={() => [setMenDropDown(false), setShowBlur(false)]} className="hover:text-black">T-shirt</Link>
                                 <Link to="/men" onClick={() => [setMenDropDown(false), setShowBlur(false)]} className="hover:text-black">Blazzer</Link>
                                 <Link to="/men" onClick={() => [setMenDropDown(false), setShowBlur(false)]} className="hover:text-black">Jacket</Link>
-                                <Link to="/men" onClick={() => [setMenDropDown(false), setShowBlur(false)]} className="hover:text-black">Dress</Link>
                                 <Link to="/men" onClick={() => [setMenDropDown(false), setShowBlur(false)]} className="hover:text-black">Pants</Link>
                             </div>
                             <div className="text-black/70 text-sm flex flex-col gap-y-3">
@@ -295,18 +302,18 @@ export default function Navbar() {
                             </div>
                             <Link to="/men" onClick={() => [setMenDropDown(false), setShowBlur(false)]}>
                                 <div className="flex flex-wrap gap-x-2 h-40">
-                                    <img src={Img1} alt="" className="h-auto max-h-40 object-cover hover:shadow-lg hover:transition-all hover:duration-300" />
+                                    <img src={Img3} alt="" className="h-auto max-h-40 object-cover hover:shadow-lg hover:transition-all hover:duration-300" />
                                     <div className="flex flex-col">
-                                        <p className="font-semibold hover:text-black hover:transition-all hover:duration-300">Casual T-shirt</p>
+                                        <p className="font-semibold hover:text-black hover:transition-all hover:duration-300">Casual Jacket</p>
                                         <p>Popular Second</p>
                                     </div>
                                 </div>
                             </Link>
                             <Link to="/men" onClick={() => [setMenDropDown(false), setShowBlur(false)]}>
                                 <div className="flex flex-wrap gap-x-2 h-40">
-                                    <img src={Img2} alt="" className="h-auto max-h-40 object-cover hover:shadow-lg hover:transition-all hover:duration-300" />
+                                    <img src={Img4} alt="" className="h-auto max-h-40 object-cover hover:shadow-lg hover:transition-all hover:duration-300" />
                                     <div className="flex flex-col">
-                                        <p className="font-semibold hover:text-black hover:transition-all hover:duration-300">Dress Winter</p>
+                                        <p className="font-semibold hover:text-black hover:transition-all hover:duration-300">Jacket Winter</p>
                                         <p>Popular Second</p>
                                     </div>
                                 </div>
@@ -342,18 +349,18 @@ export default function Navbar() {
                             </div>
                             <Link to="/kid" onClick={() => [setKidDropDown(false), setShowBlur(false)]}>
                                 <div className="flex flex-wrap gap-x-2 h-40">
-                                    <img src={Img1} alt="" className="h-auto max-h-40 object-cover hover:shadow-lg hover:transition-all hover:duration-300" />
+                                    <img src={Img5} alt="" className="h-auto max-h-40 object-cover hover:shadow-lg hover:transition-all hover:duration-300" />
                                     <div className="flex flex-col">
-                                        <p className="font-semibold hover:text-black hover:transition-all hover:duration-300">Casual T-shirt</p>
+                                        <p className="font-semibold hover:text-black hover:transition-all hover:duration-300">Blazzer Kid</p>
                                         <p>Popular Second</p>
                                     </div>
                                 </div>
                             </Link>
                             <Link to="/kid" onClick={() => [setKidDropDown(false), setShowBlur(false)]}>
                                 <div className="flex flex-wrap gap-x-2 h-40">
-                                    <img src={Img2} alt="" className="h-auto max-h-40 object-cover hover:shadow-lg hover:transition-all hover:duration-300" />
+                                    <img src={Img6} alt="" className="h-auto max-h-40 object-cover hover:shadow-lg hover:transition-all hover:duration-300" />
                                     <div className="flex flex-col">
-                                        <p className="font-semibold hover:text-black hover:transition-all hover:duration-300">Dress Winter</p>
+                                        <p className="font-semibold hover:text-black hover:transition-all hover:duration-300">Dress Blazzer</p>
                                         <p>Popular Second</p>
                                     </div>
                                 </div>
@@ -388,7 +395,7 @@ export default function Navbar() {
                                     </div>
                                     <div className="flex gap-x-2 text-sm text-black/70 mt-8">
                                         <p className="">See all product?</p>
-                                        <Link onClick={() => [setShowSearch(false), setsearchDropDown(false)]} to="/shop" className="font-semibold flex gap-x-1 items-center">Go to shop <FaShop /></Link>
+                                        <Link onClick={() => [setShowSearch(false), setsearchDropDown(false)]} to="/women" className="font-semibold flex gap-x-1 items-center">Go to shop <FaShop /></Link>
                                     </div>
 
                                 </div>
@@ -417,8 +424,8 @@ export default function Navbar() {
                                 <li className="relative cursor-default">
                                     <p onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(true), setShowBlur(true)]} className="hover:text-black text-black/50">Kids</p>
                                 </li>
-                                <li><Link to="/about" onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="hover:text-black text-black/50">Company</Link></li>
-                                <li><Link onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="hover:text-black text-black/50">Tips & Tricks</Link></li>
+                                <li><Link to="/about" onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="hover:text-black text-black/50">About</Link></li>
+                                <li><Link to="/tips" onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="hover:text-black text-black/50">Tips & Tricks</Link></li>
                             </ul>
                         </div>
                         <div className="flex lg:hidden w-full gap-x-2 items-center">
@@ -456,13 +463,16 @@ export default function Navbar() {
 
                             </div>
 
-                            <Link to="/sell" onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className=" hidden lg:flex text-white bg-[#3D9970] p-1 text-sm rounded-sm px-3">Sell Now!</Link>
-                            <div onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="text-black/50 text-base hidden lg:flex">
+                            <Link to="/sell" onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className=" hidden lg:flex text-white cursor-pointer bg-[#3D9970] p-2 text-sm rounded-lg px-3 hover:bg-green-800/80">Sell Now!</Link>
+
+                            <Link to="/cart" onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="text-black/50 text-base hidden lg:flex cursor-pointer hover:text-black">
                                 <ShoppingBagIcon className="w-5" />
-                            </div>
-                            <div onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="text-black/50 text-base hidden lg:flex">
+                            </Link>
+
+                            <div onMouseEnter={() => [setShowSearch(false), setsearchDropDown(false), setShowBlur(false), setMenDropDown(false), setWomenDropDown(false), setKidDropDown(false)]} className="text-black/50 text-base hidden lg:flex cursor-pointer hover:text-black">
                                 <UserIcon onClick={() => setOpenLogin(true)} className="w-5" />
                             </div>
+
                         </div>
 
 
@@ -482,21 +492,25 @@ export default function Navbar() {
                         <List className="w-5 h-5" />
                         <p>Menu</p>
                     </div>
+                    <Link to="/sell">
+                        <div onClick={() => setIsMobile(false)} className="flex flex-col items-center gap-y-2">
+                            <Store className="w-5 h-5" />
+                            <p>Sell Now</p>
+                        </div>
+                    </Link>
 
-                    <div onClick={() => setIsMobile(false)} className="flex flex-col items-center gap-y-2">
-                        <Store className="w-5 h-5" />
-                        <p>Sell Now</p>
-                    </div>
+                    <Link to="/cart">
+                        <div onClick={() => setIsMobile(false)} className="flex flex-col items-center gap-y-2">
+                            <ShoppingBag className="w-5 h-5" />
+                            <p>Cart</p>
+                        </div>
+                    </Link>
 
-                    <div onClick={() => setIsMobile(false)} className="flex flex-col items-center gap-y-2">
-                        <ShoppingBag className="w-5 h-5" />
-                        <p>Cart</p>
-                    </div>
-
-                    <div onClick={() => setIsMobile(false)} className="flex flex-col items-center gap-y-2">
+                    <div onClick={() => [setIsMobile(false), setOpenLogin(true)]} className="flex flex-col items-center gap-y-2">
                         <User className="w-5 h-5" />
                         <p>Account</p>
                     </div>
+
                 </div>
             </nav>
             {isMobile && (
@@ -507,18 +521,18 @@ export default function Navbar() {
                                 <h2 className="font-semibold text-lg mb-4">Menu</h2>
                                 <X onClick={() => setIsMobile(false)} className="w-6" />
                             </div>
-                            <div className="h-full flex flex-col gap-y-8">
-                                <div className="flex flex-col gap-y-2">
+                            <div className="h-full flex flex-col gap-y-8 text-base">
+                                <div className="flex flex-col gap-y-4">
                                     <Link onClick={() => setIsMobile(false)} to="/men">Men</Link>
                                     <Link onClick={() => setIsMobile(false)} to="/women">Women</Link>
                                     <Link onClick={() => setIsMobile(false)} to="kid">Kids</Link>
                                 </div>
-                                <div className="flex flex-col gap-y-2">
-                                    <Link onClick={() => setIsMobile(false)} to="/t-shirt">T-shirt</Link>
-                                    <Link onClick={() => setIsMobile(false)} to="/sandals">Sandals</Link>
-                                    <Link onClick={() => setIsMobile(false)} to="/shoes">Shoes</Link>
-                                    <Link onClick={() => setIsMobile(false)} to="/jacket">Jacket</Link>
-                                    <Link onClick={() => setIsMobile(false)} to="/blazzer">Blazzer</Link>
+                                <div className="flex flex-col gap-y-4">
+                                    <Link onClick={() => setIsMobile(false)} to="/women">T-shirt</Link>
+                                    <Link onClick={() => setIsMobile(false)} to="/women">Sandals</Link>
+                                    <Link onClick={() => setIsMobile(false)} to="/women">Shoes</Link>
+                                    <Link onClick={() => setIsMobile(false)} to="/women">Jacket</Link>
+                                    <Link onClick={() => setIsMobile(false)} to="/women">Blazzer</Link>
                                 </div>
                                 <div className="flex flex-col gap-y-2">
                                     <div className="flex gap-2 flex-wrap">

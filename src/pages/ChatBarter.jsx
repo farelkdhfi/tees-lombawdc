@@ -183,7 +183,7 @@ const ChatBarter = () => {
                             )}
                             <button
                                 onClick={handleNextStep}
-                                className="px-4 py-2 text-sm text-white bg-green-500 rounded-lg hover:bg-green-600"
+                                className="px-4 py-2 text-sm text-white bg-green rounded-lg hover:bg-green-800/80"
                             >
                                 {barterStep === 3 ? "Selesai" : "Lanjut"}
                             </button>

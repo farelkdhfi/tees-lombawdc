@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import products from "../utils/products";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Heart } from "lucide-react";
 
 const RecentlyUploaded = () => {
+    const { id } = useParams();
+
     const [activeCategory, setActiveCategory] = useState(products[0]);
     const productRef = useRef(null);
 
@@ -63,27 +65,29 @@ const RecentlyUploaded = () => {
 
             <div ref={productRef} className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-3 md:gap-3 gap-2">
                 {activeCategory.items.slice(0, visibleProducts).map((product) => (
-                    <div key={product.id} className="bg-white rounded-2xl shadow-lg border border-black/10 w-full">
-                        <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-auto md:h-80 object-cover rounded-md md:mb-2"
-                        />
-                        <div className=" md:p-4 p-2">
-                            <div className="flex justify-between items-center">
-                                <h3 className="font-semibold text-black/70 md:text-lg text-sm">{product.name}</h3>
-                                <Heart className="md:w-5 w-3" />
+                    <Link to={`/product/${product.id}`}>
+                        <div key={product.id} className="bg-white rounded-2xl shadow-lg border border-black/10 w-full">
+                            <img
+                                src={product.image}
+                                alt={product.name}
+                                className="w-full h-auto md:h-80 object-cover rounded-md md:mb-2"
+                            />
+                            <div className=" md:p-4 p-2">
+                                <div className="flex justify-between items-center">
+                                    <h3 className="font-semibold text-black/70 md:text-lg text-sm">{product.name}</h3>
+                                    <Heart className="md:w-5 w-3" />
+                                </div>
+                                <p className=" text-gray-500 text-xs md:text-sm">{product.brand}</p>
+                                <div className="flex justify-between mt-2 md:mt-5 items-center">
+                                    <p className="md:text-xl mb-2 md:mb-0 text-sm text-black/70 font-semibold md:mt-2">
+                                        ${product.price}
+                                    </p>
+                                    <p className="hidden md:flex text-green-800/50 text-xs md:mt-2 md:text-sm">{product.location}</p>
+                                </div>
                             </div>
-                            <p className=" text-gray-500 text-xs md:text-sm">{product.brand}</p>
-                            <div className="flex justify-between mt-2 md:mt-5 items-center">
-                                <p className="md:text-xl mb-2 md:mb-0 text-sm text-black/70 font-semibold md:mt-2">
-                                    ${product.price}
-                                </p>
-                                <p className="hidden md:flex text-green-800/50 text-xs md:mt-2 md:text-sm">{product.location}</p>
-                            </div>
-                        </div>
 
-                    </div>
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>

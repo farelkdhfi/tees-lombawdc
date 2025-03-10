@@ -15,6 +15,9 @@ import ModalOffer from './components/ModalOffer';
 import ChatBarter from './pages/ChatBarter';
 import Sell from './pages/Sell';
 import MainLayoutAcc from './accountpages/MainLayoutAcc';
+import Cart from './pages/Cart';
+import Tips from './pages/Tips';
+import About from './pages/About';
 
 const AppContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,6 +70,9 @@ const AppContent = () => {
           <Route path="/barter/:id" element={<ChatBarter />} />
           <Route path="/sell" element={<Sell />} />
           <Route path="/profile" element={<MainLayoutAcc />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/tips" element={<Tips />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </main>
       {/* Footer hanya ditampilkan jika bukan di halaman /chat */}

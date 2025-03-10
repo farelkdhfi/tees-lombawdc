@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import products from "../utils/products";
 import Img from '../assets/seller.png'
 import { FaStar } from "react-icons/fa";
@@ -150,6 +150,7 @@ const ProductDetails = () => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-5 md:gap-3 gap-2">
           {displayedProducts.map((product) => (
+            <Link to={`/product/${product.id}`}>
             <div key={product.id} className="bg-white md:p-4 rounded-2xl shadow-lg border border-black/10">
               <img
                 src={product.image}
@@ -166,6 +167,7 @@ const ProductDetails = () => {
                 <p className="hidden md:flex text-green-800/50 text-xs md:mt-2 md:text-sm">{product.location}</p>
               </div>
             </div>
+            </Link>
           ))}
         </div>
         {!showAll && products[0].items.length > 6 && (

@@ -119,14 +119,14 @@ const Account = () => {
                     {editMode ? (
                         <button
                             onClick={handleSave}
-                            className="w-full px-4 py-2 border-black/30 border text-black/70 hover:text-black rounded-md hover:border-black"
+                            className="w-full px-4 py-2 border-black/30 border text-black/70 hover:text-black rounded-md hover:border-black transition-all duration-300 cursor-pointer"
                         >
                             Save Changes
                         </button>
                     ) : (
                         <button
                             onClick={() => setEditMode(true)}
-                            className="w-full px-4 py-2 border-black/30 border text-black/70 hover:text-black rounded-md hover:border-black"
+                            className="w-full px-4 py-2 border-black/30 border text-black/70 hover:text-black rounded-md hover:border-black transition-all duration-300 cursor-pointer"
                         >
                             Edit Profile
                         </button>

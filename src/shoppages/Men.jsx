@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { FaShop } from "react-icons/fa6";
 import { HeartIcon } from "@heroicons/react/24/outline";
 
-import Banner from '../assets/women.jpg'
-import Banner2 from '../assets/Imagesrecently1.png'
-import Banner3 from '../assets/Imagesrecently2.png'
-import Banner4 from '../assets/Imagesrecently3.png'
+import Banner from '../assets/menn.jpg'
+import Banner2 from '../assets/man-jacket/menjack6.png'
+import Banner3 from '../assets/man-jacket/menjack5.png'
+import Banner4 from '../assets/man-tshirt/menshirt2.png'
 import Logo from '../assets/tees.png'
 
 import gsap from "gsap";

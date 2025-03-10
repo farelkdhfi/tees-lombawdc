@@ -113,7 +113,7 @@ const ModalBarter = ({ isBarter, barterClose }) => {
                                         type="text"
                                         name="name"
                                         placeholder="Contoh: Sepatu Sneakers"
-                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none "
                                         value={userProduct.name}
                                         onChange={handleChange}
                                         required
@@ -149,7 +149,7 @@ const ModalBarter = ({ isBarter, barterClose }) => {
                                             type="text"
                                             name="brand"
                                             placeholder="Contoh: Nike"
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none "
                                             value={userProduct.brand}
                                             onChange={handleChange}
                                             required
@@ -161,7 +161,7 @@ const ModalBarter = ({ isBarter, barterClose }) => {
                                             type="text"
                                             name="size"
                                             placeholder="Contoh: 42"
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none "
                                             value={userProduct.size}
                                             onChange={handleChange}
                                             required
@@ -174,7 +174,7 @@ const ModalBarter = ({ isBarter, barterClose }) => {
                                         type="text"
                                         name="location"
                                         placeholder="Contoh: Jakarta"
-                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none "
                                         value={userProduct.location}
                                         onChange={handleChange}
                                         required
