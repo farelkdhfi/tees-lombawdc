@@ -490,7 +490,7 @@ export default function Navbar() {
                 <div className="flex justify-between max-w-2xl items-center text-xs text-black/70 h-18 mx-auto">
                     <div onClick={() => setIsMobile((prev) => !prev)} className="flex flex-col items-center gap-y-2">
                         <List className="w-5 h-5" />
-                        <p>Menu</p>
+                        <p>Home</p>
                     </div>
                     <Link to="/sell">
                         <div onClick={() => setIsMobile(false)} className="flex flex-col items-center gap-y-2">
@@ -517,10 +517,13 @@ export default function Navbar() {
                 <div className="fixed lg:hidden pb-18 top-20 md:top-30 h-full bg-black/40 backdrop-blur-2xl left-0 z-[99] w-full text-sm">
                     <div className="h-full w-3/4 max-w-sm pb-32 bg-white text-black/70 p-5 overflow-y-auto">
                         <div>
-                            <div className="flex justify-between">
-                                <h2 className="font-semibold text-lg mb-4">Menu</h2>
-                                <X onClick={() => setIsMobile(false)} className="w-6" />
-                            </div>
+                            <Link onClick={() => setIsMobile(false)} to="/">
+                                <div className="flex justify-between">
+                                    <h2 className="font-semibold text-lg mb-4">Home</h2>
+                                    <X onClick={() => setIsMobile(false)} className="w-6" />
+                                </div>
+                            </Link>
+
                             <div className="h-full flex flex-col gap-y-8 text-base">
                                 <div className="flex flex-col gap-y-4">
                                     <Link onClick={() => setIsMobile(false)} to="/men">Men</Link>
