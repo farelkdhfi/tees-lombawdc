@@ -1,6 +1,6 @@
 import { PlusCircle } from 'lucide-react';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Impor Link dari react-router-dom
+import { Link } from 'react-router-dom';
 
 const MyProduct = ({ displayedProducts }) => {
     const [products, setProducts] = useState(displayedProducts);
@@ -29,10 +29,10 @@ const MyProduct = ({ displayedProducts }) => {
     };
 
     return (
-        <div className='flex w-full p-8 bg-white rounded-lg shadow-lg'>
+        <div className='flex w-full p-4 md:p-8 bg-white rounded-lg shadow-lg'>
             <div className='w-full'>
-                <div className="flex justify-between items-center mb-8">
-                    <h2 className="text-lg font-bold text-gray-800">My Store Dashboard</h2>
+                <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <h2 className="text-lg font-bold text-gray-800 mb-4 md:mb-0">My Store Dashboard</h2>
                     <Link
                         to="/sell"
                         className="bg-green flex gap-x-2 text-white px-4 py-2 rounded-md hover:bg-green-800/80 transition-colors duration-300"
@@ -42,16 +42,16 @@ const MyProduct = ({ displayedProducts }) => {
                 </div>
 
                 {/* Ringkasan Penjualan */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="p-6 rounded-lg border border-black/10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                    <div className="p-4 md:p-6 rounded-lg border border-black/10">
                         <h3 className="text-base font-semibold text-gray-800">Total Products</h3>
                         <p className="text-2xl text-gray-800">{products.length}</p>
                     </div>
-                    <div className="p-6 rounded-lg border border-black/10">
+                    <div className="p-4 md:p-6 rounded-lg border border-black/10">
                         <h3 className="text-base font-semibold text-gray-800">Orders Pending</h3>
                         <p className="text-2xl text-gray-800">{orders.filter(order => order.status === "Pending").length}</p>
                     </div>
-                    <div className="p-6 rounded-lg border border-black/10">
+                    <div className="p-4 md:p-6 rounded-lg border border-black/10">
                         <h3 className="text-base font-semibold text-gray-800">Products Sold Out</h3>
                         <p className="text-2xl text-gray-800">{products.filter(product => product.status === "Sold Out").length}</p>
                     </div>
@@ -59,8 +59,8 @@ const MyProduct = ({ displayedProducts }) => {
 
                 {/* Daftar Produk */}
                 <h3 className="text-base font-bold text-gray-800 mb-3">My Products</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {products.map((product, index) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {products.map((product) => (
                         <div
                             key={product.id}
                             className="bg-white p-4 text-sm rounded-lg border border-black/10 transform transition-transform duration-300"
