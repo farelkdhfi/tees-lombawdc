@@ -61,14 +61,14 @@ const MainLayoutAcc = () => {
 
           {/* Sidebar */}
           <div
-            className={`fixed md:relative pt-5 inset-y-0 left-0 w-64 bg-white rounded-lg shadow-md p-6 min-h-screen transform ${
+            className={`fixed md:relative pt-5 inset-y-0 left-0 w-64 bg-white rounded-lg shadow-md p-6 min-h-screen overflow-y-auto transform ${
               isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
             } md:translate-x-0 transition-transform duration-200 ease-in-out z-50 md:z-0`}
           >
             <p className='text-base font-semibold mb-5'>Profile Menu</p>
             <ul className="space-y-4">
               <li
-                className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer ${
+                className={`flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer ${
                   activeTab === 'account' ? 'bg-green-50 text-green-600' : 'text-black/70 hover:bg-gray-50'
                 }`}
                 onClick={() => [setIsSidebarOpen(false), setActiveTab('account')]}
@@ -77,7 +77,7 @@ const MainLayoutAcc = () => {
                 <span>Account</span>
               </li>
               <li
-                className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer ${
+                className={`flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer ${
                   activeTab === 'myproduct' ? 'bg-green-50 text-green-600' : 'text-black/70 hover:bg-gray-50'
                 }`}
                 onClick={() => [setIsSidebarOpen(false), setActiveTab('myproduct')]}
@@ -86,7 +86,7 @@ const MainLayoutAcc = () => {
                 <span>My Store</span>
               </li>
               <li
-                className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer ${
+                className={`flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer ${
                   activeTab === 'order' ? 'bg-green-50 text-green-600' : 'text-black/70 hover:bg-gray-50'
                 }`}
                 onClick={() => [setIsSidebarOpen(false), setActiveTab('order')]}
@@ -95,7 +95,7 @@ const MainLayoutAcc = () => {
                 <span>Orders</span>
               </li>
               <li
-                className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer ${
+                className={`flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer ${
                   activeTab === 'barter' ? 'bg-green-50 text-green-600' : 'text-black/70 hover:bg-gray-50'
                 }`}
                 onClick={() => [setIsSidebarOpen(false), setActiveTab('barter')]}
@@ -104,7 +104,7 @@ const MainLayoutAcc = () => {
                 <span>Barter</span>
               </li>
               <li
-                className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer ${
+                className={`flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer ${
                   activeTab === 'address' ? 'bg-green-50 text-green-600' : 'text-black/70 hover:bg-gray-50'
                 }`}
                 onClick={() => [setIsSidebarOpen(false), setActiveTab('address')]}
@@ -113,7 +113,7 @@ const MainLayoutAcc = () => {
                 <span>Address</span>
               </li>
               <li
-                className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer ${
+                className={`flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer ${
                   activeTab === 'wishlist' ? 'bg-green-50 text-green-600' : 'text-black/70 hover:bg-gray-50'
                 }`}
                 onClick={() => [setIsSidebarOpen(false), setActiveTab('wishlist')]}
@@ -122,7 +122,7 @@ const MainLayoutAcc = () => {
                 <span>Wishlist</span>
               </li>
               <li
-                className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer ${
+                className={`flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer ${
                   activeTab === 'password' ? 'bg-green-50 text-green-600' : 'text-black/70 hover:bg-gray-50'
                 }`}
                 onClick={() => [setIsSidebarOpen(false), setActiveTab('password')]}
@@ -130,7 +130,7 @@ const MainLayoutAcc = () => {
                 <Lock size={20} />
                 <span>Password</span>
               </li>
-              <li className="flex items-center space-x-3 p-3 rounded-lg cursor-pointer text-black/70 hover:bg-gray-50">
+              <li className="flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer text-black/70 hover:bg-gray-50">
                 <LogOut size={20} />
                 <span>Logout</span>
               </li>

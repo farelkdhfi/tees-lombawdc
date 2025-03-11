@@ -20,7 +20,7 @@ const WishList = ({ displayedProducts }) => {
                 <div>
                     <div className="grid grid-cols-1 gap-4">
                         {displayedProducts.map((product) => (
-                            <div key={product.id} className="bg-white flex justify-between items-center border p-3 border-black/10 shadow-md rounded-lg">
+                            <div key={product.id} className="bg-white flex flex-wrap gap-3 justify-between items-center border p-3 border-black/10 shadow-md rounded-lg">
                                 <div className='flex'>
                                     <img
                                         src={product.image}

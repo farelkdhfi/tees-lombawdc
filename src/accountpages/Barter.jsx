@@ -22,20 +22,20 @@ const Barter = ({ displayedProducts }) => {
             setBarterStep(barterStep + 1);
         } else {
             setShowBarterModal(false);
-            setSelectedProduct(false)
+            setSelectedProduct(false);
             setBarterStep(1);
         }
     };
 
     return (
         <div className='flex w-full'>
-            <div className='bg-white p-8 rounded-lg shadow-lg w-full'>
+            <div className='bg-white p-4 md:p-8 rounded-lg shadow-lg w-full'>
                 <h2 className="text-lg font-bold mb-6 text-gray-800">Barter History</h2>
                 <div>
                     <div className="grid grid-cols-1 gap-4">
                         {displayedProducts.map((product) => (
-                            <div key={product.id} className="bg-white flex justify-between items-center border p-3 border-black/10 shadow-md rounded-lg">
-                                <div className='flex'>
+                            <div key={product.id} className="bg-white flex flex-col md:flex-row justify-between items-center border p-3 border-black/10 shadow-md rounded-lg">
+                                <div className='flex flex-col md:flex-row items-center'>
                                     <img
                                         src={product.image}
                                         alt={product.name}
@@ -50,7 +50,7 @@ const Barter = ({ displayedProducts }) => {
                                         </p>
                                     </div>
                                 </div>
-                                <div className='flex'>
+                                <div className='flex flex-col md:flex-row items-center mt-4 md:mt-0'>
                                     <img
                                         src={product.offeredProduct.image}
                                         alt={product.offeredProduct.name}
@@ -64,7 +64,7 @@ const Barter = ({ displayedProducts }) => {
                                 </div>
                                 <button 
                                     onClick={() => handleViewDetail(product)}
-                                    className='border h-fit w-fit py-2 px-3 text-sm hover:border-black hover:text-black transition-all duration-300 cursor-pointer rounded-lg shadow-md border-black/40'
+                                    className='border h-fit w-fit py-2 px-3 text-sm hover:border-black hover:text-black transition-all duration-300 cursor-pointer rounded-lg shadow-md border-black/40 mt-4 md:mt-0'
                                 >
                                     View Detail
                                 </button>
@@ -76,9 +76,9 @@ const Barter = ({ displayedProducts }) => {
 
             {selectedProduct && (
                 <div className="fixed inset-0 bg-black/40 z-[999999999] flex justify-center items-center">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-full md:w-1/2 lg:w-1/3 mx-4">
                         <h2 className="text-lg font-bold mb-4">Barter Detail</h2>
-                        <div className="flex">
+                        <div className="flex flex-col md:flex-row">
                             <img
                                 src={selectedProduct.image}
                                 alt={selectedProduct.name}
@@ -95,7 +95,7 @@ const Barter = ({ displayedProducts }) => {
                         </div>
                         <div className="mt-4">
                             <h3 className="font-semibold">Offered Product:</h3>
-                            <div className="flex mt-2">
+                            <div className="flex flex-col md:flex-row mt-2">
                                 <img
                                     src={selectedProduct.offeredProduct.image}
                                     alt={selectedProduct.offeredProduct.name}
@@ -119,12 +119,12 @@ const Barter = ({ displayedProducts }) => {
                                 <>
                                     <button 
                                         onClick={handleAccept}
-                                        className="bg-green-500 text-white px-4 py-2 rounded-lg mr-2"
+                                        className="bg-green hover:bg-green-800/80 text-white px-4 py-2 rounded-lg mr-2"
                                     >
                                         Accept
                                     </button>
                                     <button 
-                                        className="bg-red-500 text-white px-4 py-2 rounded-lg"
+                                        className="bg-red-800 text-white px-4 py-2 rounded-lg"
                                     >
                                         Reject
                                     </button>
@@ -137,19 +137,19 @@ const Barter = ({ displayedProducts }) => {
             {showBarterModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-[9999999999999999999]">
                     <div className="bg-white rounded-lg shadow-2xl w-full max-w-md mx-4 p-6">
-                        <h2 className="text-lg font-bold mb-4">Proses Barter</h2>
+                        <h2 className="text-lg font-bold mb-4">Barter Process</h2>
 
                         {/* Langkah 1: Konfirmasi Barter */}
                         {barterStep === 1 && (
                             <div className="space-y-4">
-                                <p className="text-sm text-gray-700">Anda akan menukar:</p>
+                                <p className="text-sm text-gray-700">You will trade:</p>
                                 <div className="flex gap-4">
                                     <img src={selectedProduct.image} alt={selectedProduct.name} className="w-20 h-20 object-cover rounded-lg" />
                                     <img src={selectedProduct.offeredProduct.image} alt={selectedProduct.offeredProduct.name} className="w-20 h-20 object-cover rounded-lg" />
                                 </div>
                                 <div className="text-sm text-gray-700">
-                                    <p><strong>Produk Anda:</strong> {selectedProduct.offeredProduct.name}</p>
-                                    <p><strong>Produk Penjual:</strong> {selectedProduct.name}</p>
+                                    <p><strong>Your Product:</strong> {selectedProduct.offeredProduct.name}</p>
+                                    <p><strong>Seller Product:</strong> {selectedProduct.name}</p>
                                 </div>
                                 <p className="text-sm text-gray-700">Pastikan detail barter sudah benar sebelum melanjutkan.</p>
                             </div>
