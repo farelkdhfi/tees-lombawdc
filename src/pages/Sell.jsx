@@ -54,9 +54,9 @@ const Sell = () => {
 
     return (
         <section className='pt-20 md:pt-30 bg-gray-50 min-h-screen pb-20'>
-            <div className='max-w-4xl mx-auto p-5'>
-                <h1 className='text-3xl font-bold text-center mb-8 text-gray-800'>Sell Your Product</h1>
-                <form onSubmit={handleSubmit} className='bg-white p-8 rounded-lg shadow-lg'>
+            <div className='md:max-w-4xl w-full mx-auto'>
+                <h1 className='text-3xl font-bold text-center mb-8 mt-10 text-gray-800'>Sell Your Product</h1>
+                <form onSubmit={handleSubmit} className='bg-white md:p-8 p-3 rounded-lg shadow-lg'>
                     {/* Upload Image Section */}
                     <div className='mb-6'>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
