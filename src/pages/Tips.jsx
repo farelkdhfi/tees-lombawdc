@@ -195,6 +195,11 @@ const Tips = () => {
                                 fact: 'Washing clothes in cold water and air-drying can reduce your carbon footprint by up to 50%!',
                                 icon: '🧺',
                             },
+                            {
+                                title: 'Support Sustainable Brands',
+                                fact: 'Brands that prioritize sustainability often use ethical labor practices and eco-friendly materials, helping to reduce environmental impact.',
+                                icon: '🌍',
+                            },
                         ].map((tip, index) => (
                             <div
                                 key={index}
@@ -230,71 +235,71 @@ const Tips = () => {
             </section>
 
             {/* Quiz Section */}
-<section ref={quizRef} className="px-3 lg:px-15 py-20 bg-white">
-    <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Test Your Knowledge</h2>
-        <Lottie animationData={quizAnimation} loop={true} style={{ width: '100%', height: 200 }} />
-        <div className="mt-8 text-center">
-            <form onSubmit={handleQuizSubmit}>
-                <p className="text-gray-600 mb-4">Which type of cotton uses 91% less water?</p>
-                <div className="flex justify-center gap-4">
-                    <label className="flex items-center space-x-2 cursor-pointer">
-                        <input
-                            type="radio"
-                            name="quiz"
-                            value="organic"
-                            onChange={(e) => setQuizAnswer(e.target.value)}
-                            className="form-radio h-5 w-5 text-green-500 border-2 border-gray-300 focus:ring-green-500"
-                        />
-                        <span className="text-gray-700">Organic Cotton</span>
-                    </label>
-                    <label className="flex items-center space-x-2 cursor-pointer">
-                        <input
-                            type="radio"
-                            name="quiz"
-                            value="conventional"
-                            onChange={(e) => setQuizAnswer(e.target.value)}
-                            className="form-radio h-5 w-5 text-green-500 border-2 border-gray-300 focus:ring-green-500"
-                        />
-                        <span className="text-gray-700">Conventional Cotton</span>
-                    </label>
+            <section ref={quizRef} className="px-3 lg:px-15 py-20 bg-white">
+                <div className="max-w-6xl mx-auto">
+                    <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Test Your Knowledge</h2>
+                    <Lottie animationData={quizAnimation} loop={true} style={{ width: '100%', height: 200 }} />
+                    <div className="mt-8 text-center">
+                        <form onSubmit={handleQuizSubmit}>
+                            <p className="text-gray-600 mb-4">Which type of cotton uses 91% less water?</p>
+                            <div className="flex justify-center gap-4">
+                                <label className="flex items-center space-x-2 cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="quiz"
+                                        value="organic"
+                                        onChange={(e) => setQuizAnswer(e.target.value)}
+                                        className="form-radio h-5 w-5 cursor-pointer text-green-500 border-2 border-gray-300 focus:ring-green-500"
+                                    />
+                                    <span className="text-gray-700">Organic Cotton</span>
+                                </label>
+                                <label className="flex items-center space-x-2 cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="quiz"
+                                        value="conventional"
+                                        onChange={(e) => setQuizAnswer(e.target.value)}
+                                        className="form-radio h-5 w-5 cursor-pointer text-green-500 border-2 border-gray-300 focus:ring-green-500"
+                                    />
+                                    <span className="text-gray-700">Conventional Cotton</span>
+                                </label>
+                            </div>
+                            <button
+                                type="submit"
+                                className="mt-4 px-6 py-2 bg-green cursor-pointer text-white rounded-lg hover:bg-green-800/80 transition-colors duration-300"
+                            >
+                                Submit
+                            </button>
+                        </form>
+                        {quizResult && (
+                            <div className="mt-4">
+                                {/* Tampilkan teks hasil dengan warna dan animasi sesuai kondisi */}
+                                <p className={`text-lg font-semibold ${quizResult === 'Correct!' ? 'text-green-500' : 'text-red-500'}`}>
+                                    {quizResult}
+                                </p>
+                                {/* Tampilkan animasi sesuai hasil */}
+                                {quizResult === 'Correct!' ? (
+                                    <Lottie
+                                        animationData={successAnimation}
+                                        loop={true} // Hanya putar sekali
+                                        style={{ width: '100%', height: 150 }}
+                                    />
+                                ) : (
+                                    <Lottie
+                                        animationData={failAnimation}
+                                        loop={true} // Hanya putar sekali
+                                        style={{ width: '100%', height: 150 }}
+                                    />
+                                )}
+                            </div>
+                        )}
+                    </div>
                 </div>
-                <button
-                    type="submit"
-                    className="mt-4 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300"
-                >
-                    Submit
-                </button>
-            </form>
-            {quizResult && (
-                <div className="mt-4">
-                    {/* Tampilkan teks hasil dengan warna dan animasi sesuai kondisi */}
-                    <p className={`text-lg font-semibold ${quizResult === 'Correct!' ? 'text-green-500' : 'text-red-500'}`}>
-                        {quizResult}
-                    </p>
-                    {/* Tampilkan animasi sesuai hasil */}
-                    {quizResult === 'Correct!' ? (
-                        <Lottie 
-                            animationData={successAnimation} 
-                            loop={false} // Hanya putar sekali
-                            style={{ width: '100%', height: 150 }} 
-                        />
-                    ) : (
-                        <Lottie 
-                            animationData={failAnimation} 
-                            loop={false} // Hanya putar sekali
-                            style={{ width: '100%', height: 150 }} 
-                        />
-                    )}
-                </div>
-            )}
-        </div>
-    </div>
-</section>
+            </section>
 
             {/* Stats Section */}
-            <section ref={statsRef} className="px-6 lg:px-20 py-24 overflow-x-hidden bg-gradient-to-b from-green-100 to-green-50">
-                <div className="max-w-6xl mx-auto text-center">
+            <section className="px-6 lg:px-20 py-24 overflow-x-hidden bg-gradient-to-b from-green-100 to-green-50">
+                <div ref={statsRef} className="max-w-6xl mx-auto text-center">
                     <h2 className="text-4xl font-bold text-gray-800 mb-10">Did You Know?</h2>
                     <Lottie animationData={statsAnimation} loop={true} style={{ width: '100%', height: 250 }} />
                     <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -327,6 +332,12 @@ const Tips = () => {
                         </div>
                         <div className="bg-white p-6 rounded-2xl shadow-lg">
                             <p className="text-gray-700 font-medium">Recycled plastic bottles are being transformed into fabrics for sustainable fashion brands.</p>
+                        </div>
+                        <div className="bg-white p-6 rounded-2xl shadow-lg">
+                            <p className="text-gray-700 font-medium">The average person buys 60% more clothing items than they did 15 years ago, but keeps them for half as long.</p>
+                        </div>
+                        <div className="bg-white p-6 rounded-2xl shadow-lg">
+                            <p className="text-gray-700 font-medium">Over 60% of all textiles are made from synthetic fibers derived from fossil fuels, contributing to microplastic pollution.</p>
                         </div>
                     </div>
                 </div>

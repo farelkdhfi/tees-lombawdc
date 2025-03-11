@@ -130,9 +130,9 @@ const products = [
             { id: 29, name: "Sako Jacket", brand: "Brand A", price: 87.88, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "Medium", categori: "jacket", image: Img17 },
             { id: 30, name: "Bai Jacket", brand: "Brand A", price: 44.21, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "Medium", categori: "jacket", image: Img18 },
 
-            { id: 31, name: "Casual Blazzer", brand: "Brand A", price: 22.99, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "Medium", categori: "jacket", image: Img19 },
-            { id: 32, name: "Formal Blazzer", brand: "Brand A", price: 87.88, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "Medium", categori: "jacket", image: Img20 },
-            { id: 33, name: "Aka Blazzer", brand: "Brand A", price: 44.21, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "Medium", categori: "jacket", image: Img21 },
+            { id: 31, name: "Casual Blazzer", brand: "Brand A", price: 22.99, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "Medium", categori: "blazzer", image: Img19 },
+            { id: 32, name: "Formal Blazzer", brand: "Brand A", price: 87.88, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "Medium", categori: "blazzer", image: Img20 },
+            { id: 33, name: "Aka Blazzer", brand: "Brand A", price: 44.21, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "Medium", categori: "blazzer", image: Img21 },
         ]
     },
     {
