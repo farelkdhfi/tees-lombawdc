@@ -1,3 +1,4 @@
+import { PlusCircle } from 'lucide-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Impor Link dari react-router-dom
 
@@ -34,9 +35,9 @@ const MyProduct = ({ displayedProducts }) => {
                     <h2 className="text-lg font-bold text-gray-800">My Store Dashboard</h2>
                     <Link
                         to="/sell"
-                        className="bg-green text-white px-4 py-2 rounded-md hover:bg-green-800/80 transition-colors duration-300"
+                        className="bg-green flex gap-x-2 text-white px-4 py-2 rounded-md hover:bg-green-800/80 transition-colors duration-300"
                     >
-                        +Product
+                        <PlusCircle /> Product
                     </Link>
                 </div>
 
