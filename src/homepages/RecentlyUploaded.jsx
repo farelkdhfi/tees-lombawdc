@@ -26,9 +26,9 @@ const RecentlyUploaded = () => {
             if (window.innerWidth >= 1024) {
                 setVisibleProducts(20); // lg: 8 produk
             } else if (window.innerWidth >= 768) {
-                setVisibleProducts(6); // md: 6 produk
+                setVisibleProducts(20); // md: 6 produk
             } else {
-                setVisibleProducts(8); // default: 8 produk
+                setVisibleProducts(20); // default: 8 produk
             }
         };
 
