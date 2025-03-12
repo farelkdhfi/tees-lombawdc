@@ -81,8 +81,8 @@ const DiscountButton = () => {
                 {isContentVisible && (
                     <div ref={contentRef}>
                         {currentContent === 'discount' ? (
-                            <div className='bg-black/70 absolute bottom-0 ml-2 backdrop-blur-lg w-[200px] text-white p-8 px-4 rounded-lg text-sm'>
-                                <p className='text-lg text-start'>Complete sustainable fashion challenges and get discounts!
+                            <div className='bg-black/70 absolute bottom-0 ml-2 backdrop-blur-lg w-[200px] text-white p-6 px-4 rounded-lg text-sm'>
+                                <p className='text-sm text-start'>Complete sustainable fashion challenges and get discounts!
                                 </p>
                                 <button onClick={() => setOpenModal(true)} className='mt-4 bg-green hover:bg-green-400/80 text-white p-2 px-4 rounded-lg items-start mx-auto w-full cursor-pointer'>Click me</button>
                             </div>
