@@ -105,7 +105,7 @@ const DiscountButton = () => {
                             <div className="">
                                 <Lottie animationData={animationData} loop={true} style={{ width: '100%', height: 200 }} />
 
-                                <h2 className='text-lg text-center font-bold text-green'>Reusable Fashion Challenge</h2>
+                                <h2 className='text-lg text-center font-bold text-green'>Sustainable Fashion Challenge</h2>
                                 <p className='mt-4 text-gray-600 text-start text-sm'>
                                     By buying secondhand clothes, you have contributed to reducing fashion waste and supporting a more sustainable environment.
                                 </p>
