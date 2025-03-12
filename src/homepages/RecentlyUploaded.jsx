@@ -9,6 +9,8 @@ const RecentlyUploaded = () => {
 
     const [activeCategory, setActiveCategory] = useState(products[0]);
     const productRef = useRef(null);
+    const [wishlist, setWishlist] = useState({});
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         if (productRef.current) {
@@ -40,6 +42,15 @@ const RecentlyUploaded = () => {
         };
     }, []);
 
+    const handleWishlistClick = (productId) => {
+        setWishlist(prev => ({
+            ...prev,
+            [productId]: !prev[productId]
+        }));
+        setShowModal(true);
+        setTimeout(() => setShowModal(false), 2000); // Hide modal after 2 seconds
+    };
+
     return (
         <div className="bg-[#fff] flex flex-col px-3 md:px-3 lg:px-15 py-10 lg:py-20">
             <h2 className="text-xl font-semibold mb-4 text-black/70">Recently Uploaded</h2>
@@ -65,14 +76,14 @@ const RecentlyUploaded = () => {
 
             <div ref={productRef} className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-3 md:gap-3 gap-2">
                 {activeCategory.items.slice(0, visibleProducts).map((product) => (
-                    <Link to={`/product/${product.id}`}>
-                        <div key={product.id} className="bg-white rounded-2xl shadow-lg border overflow-hidden border-black/10 w-full">
+                    <Link to={`/product/${product.id}`} key={product.id}>
+                        <div className="bg-white rounded-2xl shadow-lg border overflow-hidden border-black/10 w-full">
                             <div className="relative">
-                            <img
-                                src={product.image}
-                                alt={product.name}
-                                className="w-full h-auto md:h-80 object-cover rounded-md md:mb-2"
-                            />
+                                <img
+                                    src={product.image}
+                                    alt={product.name}
+                                    className="w-full h-auto md:h-80 object-cover rounded-md md:mb-2"
+                                />
                                 {/* Icon Search */}
                                 <div className="absolute inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-white to-50% backdrop-blur-md">
                                     <SearchIcon className="w-10 h-10 text-black/70 bg-white/80 rounded-full p-2 shadow-md" />
@@ -82,7 +93,15 @@ const RecentlyUploaded = () => {
                             <div className=" md:p-4 p-2">
                                 <div className="flex justify-between items-center">
                                     <h3 className="font-semibold text-black/70 md:text-lg text-sm">{product.name}</h3>
-                                    <Heart className="md:w-5 w-3" />
+                                    <Heart 
+                                        className="md:w-5 w-3 cursor-pointer" 
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handleWishlistClick(product.id);
+                                        }}
+                                        color={wishlist[product.id] ? "red" : "black"}
+                                        fill={wishlist[product.id] ? "red" : "none"}
+                                    />
                                 </div>
                                 <p className=" text-gray-500 text-xs md:text-sm">{product.brand}</p>
                                 <div className="flex justify-between mt-2 md:mt-5 items-center">
@@ -92,11 +111,16 @@ const RecentlyUploaded = () => {
                                     <p className="hidden md:flex text-green-800/50 text-xs md:mt-2 md:text-sm">{product.location}</p>
                                 </div>
                             </div>
-
                         </div>
                     </Link>
                 ))}
             </div>
+
+            {showModal && (
+                <div className="fixed bottom-5 right-5 bg-black/70 backdrop-blur-lg text-white px-4 py-3 rounded-lg shadow-lg">
+                    Added to Wishlist
+                </div>
+            )}
         </div>
     );
 };

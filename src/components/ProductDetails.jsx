@@ -11,15 +11,17 @@ import ModalBarter from "./ModalBarter";
 const ProductDetails = () => {
   const { id } = useParams();
   const [showAll, setShowAll] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false)
-  const [offeringOpen, setOfferingOpen] = useState(false)
-  const [barterOpen, setBarterOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
+  const [offeringOpen, setOfferingOpen] = useState(false);
+  const [barterOpen, setBarterOpen] = useState(false);
+  const [wishlist, setWishlist] = useState({}); // State untuk menyimpan status wishlist
+  const [showWishlistModal, setShowWishlistModal] = useState(false); // State untuk menampilkan modal
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handlechat = () => {
-    navigate(`/chat/${product.id}`)
-  }
+    navigate(`/chat/${product.id}`);
+  };
 
   // Menggabungkan semua produk dari berbagai kategori
   const allProducts = products.flatMap(category => category.items);
@@ -34,12 +36,21 @@ const ProductDetails = () => {
   // Menentukan produk yang akan ditampilkan
   const displayedProducts = showAll ? products[0].items : products[0].items.slice(0, 8);
 
+  // Fungsi untuk menangani klik pada ikon heart
+  const handleWishlistClick = (productId) => {
+    setWishlist(prev => ({
+      ...prev,
+      [productId]: !prev[productId]
+    }));
+    setShowWishlistModal(true);
+    setTimeout(() => setShowWishlistModal(false), 2000); // Sembunyikan modal setelah 2 detik
+  };
+
   return (
     <section className="min-h-screen pt-20 md:pt-30 text-black/70">
       <div className="flex lg:flex-row flex-col px-5 lg:px-15 gap-x-5">
-
         <div className="lg:w-3/5 h-full">
-          <div className=" flex flex-col sm:flex-row gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             {/* Gambar utama */}
             <img
               src={product.image}
@@ -77,10 +88,9 @@ const ProductDetails = () => {
                   className="object-cover scale-[3]"
                 />
               </div>
-
-
             </div>
           </div>
+
           {/* Informasi Penjual */}
           <div className="bg-white rounded-lg shadow-lg border border-black/20 w-full mt-5 p-2 md:p-5">
             <p className="text-sm">Seller:</p>
@@ -134,15 +144,16 @@ const ProductDetails = () => {
             </div>
 
             <div className="mt-4 text-sm">
-              <button onClick={() => setModalOpen(true)} className=" cursor-pointer w-full bg-green hover:bg-green-800/80 transition-all duration-300 text-white py-2 rounded-lg font-semibold">Buy Now</button>
-              <button  onClick={() => setOfferingOpen(true)} className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Make an offer</button>
+              <button onClick={() => setModalOpen(true)} className="cursor-pointer w-full bg-green hover:bg-green-800/80 transition-all duration-300 text-white py-2 rounded-lg font-semibold">Buy Now</button>
+              <button onClick={() => setOfferingOpen(true)} className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Make an offer</button>
               <button onClick={() => setBarterOpen(true)} className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20">Apply for barter</button>
               <button className="w-full cursor-pointer bg-[#fafafa] hover:bg-gray-100 py-2 mt-2 rounded-lg border border-black/20" onClick={handlechat}>Message seller</button>
             </div>
           </div>
         </div>
-
       </div>
+
+      {/* Bagian "You might also like" */}
       <div className="lg:px-15 px-3 mt-20 flex flex-col items-center justify-center mb-10">
         <div className="self-start">
           <h2 className="mb-1 font-semibold text-lg md:text-2xl">You might also like</h2>
@@ -150,41 +161,55 @@ const ProductDetails = () => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-5 md:gap-3 gap-2">
           {displayedProducts.map((product) => (
-            <Link to={`/product/${product.id}`}>
-            <div key={product.id} className="bg-white md:p-4 rounded-2xl shadow-lg border border-black/10">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-auto object-cover rounded-md md:mb-4 mb-2"
-              />
-              <div className="flex justify-between items-center px-2 md:px-0">
-                <h3 className="font-semibold text-black/70 md:text-lg text-sm">{product.name}</h3>
-                <Heart className="md:w-5 w-3" />
+            <Link to={`/product/${product.id}`} key={product.id}>
+              <div className="bg-white md:p-4 rounded-2xl shadow-lg border border-black/10">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-auto object-cover rounded-md md:mb-4 mb-2"
+                />
+                <div className="flex justify-between items-center px-2 md:px-0">
+                  <h3 className="font-semibold text-black/70 md:text-lg text-sm">{product.name}</h3>
+                  <Heart
+                    className="md:w-5 w-3 cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleWishlistClick(product.id);
+                    }}
+                    color={wishlist[product.id] ? "red" : "black"}
+                    fill={wishlist[product.id] ? "red" : "none"}
+                  />
+                </div>
+                <p className="px-2 md:px-0 text-gray-500 text-xs md:text-sm">{product.brand}</p>
+                <div className="flex justify-between mt-2 md:mt-5 px-2 md:px-0 items-center">
+                  <p className="md:text-xl mb-2 md:mb-0 text-sm text-black/70 font-semibold md:mt-2">${product.price}</p>
+                  <p className="hidden md:flex text-green-800/50 text-xs md:mt-2 md:text-sm">{product.location}</p>
+                </div>
               </div>
-              <p className="px-2 md:px-0 text-gray-500 text-xs md:text-sm">{product.brand}</p>
-              <div className="flex justify-between mt-2 md:mt-5 px-2 md:px-0 items-center">
-                <p className="md:text-xl mb-2 md:mb-0 text-sm text-black/70 font-semibold md:mt-2">${product.price}</p>
-                <p className="hidden md:flex text-green-800/50 text-xs md:mt-2 md:text-sm">{product.location}</p>
-              </div>
-            </div>
             </Link>
           ))}
         </div>
         {!showAll && products[0].items.length > 6 && (
           <button
-            className="mt-8 px-5 py-2 md:py-3 md:px-8 md:shadow-lg self-center bg-green  cursor-pointer hover:bg-green-800/80 text-white transition-all duration-300 shadow font-semibold rounded-lg text-xs md:text-sm"
+            className="mt-8 px-5 py-2 md:py-3 md:px-8 md:shadow-lg self-center bg-green cursor-pointer hover:bg-green-800/80 text-white transition-all duration-300 shadow font-semibold rounded-lg text-xs md:text-sm"
             onClick={() => setShowAll(true)}
           >
             Show More
           </button>
         )}
       </div>
+
+      {/* Modal untuk "Added to Wishlist" */}
+      {showWishlistModal && (
+        <div className="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">
+          Added to Wishlist
+        </div>
+      )}
+
       <BuyNow modalOpen={modalOpen} modalClose={() => setModalOpen(false)} />
       <Offering offeringOpen={offeringOpen} offeringClose={() => setOfferingOpen(false)} />
-      <ModalBarter isBarter ={barterOpen} barterClose={() => setBarterOpen(false)} />
-
+      <ModalBarter isBarter={barterOpen} barterClose={() => setBarterOpen(false)} />
     </section>
-
   );
 };
 
