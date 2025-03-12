@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import products from "../utils/products";
 import { Link, useParams } from "react-router-dom";
-import { Heart, SearchIcon } from "lucide-react";
+import { CheckCheck, Heart, SearchIcon } from "lucide-react";
 
 const RecentlyUploaded = () => {
     const { id } = useParams();
@@ -118,8 +118,11 @@ const RecentlyUploaded = () => {
 
             {showModal && (
                 <div className="fixed bottom-5 right-5 bg-black/70 backdrop-blur-lg text-white px-4 py-3 rounded-lg shadow-lg">
-                    Added to Wishlist
-                </div>
+          <div className="flex gap-x-1">
+            <p>Added to Wishlist</p>
+            <CheckCheck />
+          </div>
+        </div>
             )}
         </div>
     );

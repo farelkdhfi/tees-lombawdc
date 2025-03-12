@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import products from "../utils/products";
 import Img from '../assets/seller.png'
 import { FaStar } from "react-icons/fa";
-import { Heart } from "lucide-react";
+import { CheckCheck, Heart } from "lucide-react";
 import BuyNow from "./BuyNow";
 import Offering from "./Offering";
 import ModalBarter from "./ModalBarter";
@@ -201,8 +201,11 @@ const ProductDetails = () => {
 
       {/* Modal untuk "Added to Wishlist" */}
       {showWishlistModal && (
-        <div className="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">
-          Added to Wishlist
+        <div className="fixed bottom-5 right-5 bg-black/70 backdrop-blur-lg text-white px-4 py-3 rounded-lg shadow-lg">
+          <div className="flex gap-x-1">
+            <p>Added to Wishlist</p>
+            <CheckCheck />
+          </div>
         </div>
       )}
 
