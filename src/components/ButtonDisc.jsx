@@ -141,7 +141,7 @@ const DiscountButton = () => {
                                 <button onClick={() => setOpenModal(true)} className='mt-4 bg-green hover:bg-green-400/80 text-white p-2 px-4 rounded-lg items-start mx-auto w-full cursor-pointer'>Click me</button>
                             </div>
                         ) : (
-                            <p className='bg-black/70 absolute bottom-5 ml-2 w-[130px] backdrop-blur-lg text-white p-2 px-4 rounded-lg text-xs'>← Tap to close</p>
+                            <p className='bg-black/70 absolute bottom-3 ml-2 w-[100px] backdrop-blur-lg text-white p-2 px-4 rounded-lg text-xs'>‹Tap to close</p>
                         )}
                     </div>
                 )}
