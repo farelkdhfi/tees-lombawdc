@@ -15,6 +15,7 @@ const DiscountButton = () => {
     const [quizAnswers, setQuizAnswers] = useState([]); // State untuk menyimpan jawaban kuis
     const [quizCompleted, setQuizCompleted] = useState(false); // State untuk menandai kuis selesai
     const [showCongratsModal, setShowCongratsModal] = useState(false); // State untuk menampilkan modal congratulation
+    const [showWrongAnswerModal, setShowWrongAnswerModal] = useState(false);
 
     // Pertanyaan kuis
     const quizQuestions = [
@@ -83,6 +84,9 @@ const DiscountButton = () => {
                 { opacity: 1, duration: 0.3 }
             );
         }
+    
+        // Reset currentSlide ke 1 dan buka modal
+        setCurrentSlide(1);
     };
 
     useEffect(() => {
@@ -103,14 +107,13 @@ const DiscountButton = () => {
         setQuizAnswers(newAnswers);
     };
 
-    // Fungsi untuk mengecek jawaban kuis
     const checkQuizAnswers = () => {
         const allCorrect = quizQuestions.every((question, index) => quizAnswers[index] === question.correctAnswer);
         if (allCorrect) {
             setQuizCompleted(true);
             setShowCongratsModal(true); // Tampilkan modal congratulation
         } else {
-            alert("Maaf, jawaban Anda belum benar semua. Silakan coba lagi!");
+            setShowWrongAnswerModal(true); // Tampilkan modal notifikasi salah jawab
         }
     };
 
@@ -192,7 +195,7 @@ const DiscountButton = () => {
                                         Your total used clothing purchases: <span className='font-semibold text-green-600'>0</span> time.
                                     </p>
                                     <p className="text-red-800/80 font-semibold">
-                                        You need to buy <span className="text-sm">0</span> more used clothes to get the discount.
+                                        You need to buy <span className="text-sm">10</span> more used clothes to get the discount.
                                     </p>
                                 </div>
                             </div>
@@ -290,6 +293,27 @@ const DiscountButton = () => {
                     </div>
                 </div>
             )}
+            {showWrongAnswerModal && (
+    <div className='fixed inset-0 flex justify-center z-[9999999] items-center bg-black/40'>
+        <div className='bg-white p-5 rounded-lg text-black/70 w-[90%] max-w-md'>
+            <div className="">
+                <Lottie animationData={failPplAnimation} loop={true} style={{ width: '100%', height: 200 }} />
+                <h2 className='text-lg text-center font-bold text-red-800/80'>Oops! Wrong Answer</h2>
+                <p className='mt-4 text-gray-600 text-center text-sm'>
+                    Sorry, some of your answers are incorrect. Please try again!
+                </p>
+            </div>
+            <div className='mt-6 flex justify-end'>
+                <button
+                    onClick={() => setShowWrongAnswerModal(false)}
+                    className='bg-red-800/80 text-white px-4 py-2 rounded-lg hover:bg-red-900/80 cursor-pointer'
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+)}
         </>
     );
 };
