@@ -490,7 +490,7 @@ export default function Navbar() {
                 <div className="flex justify-between max-w-2xl items-center text-xs text-black/70 h-18 mx-auto">
                     <div onClick={() => setIsMobile((prev) => !prev)} className="flex flex-col items-center gap-y-2">
                         <List className="w-5 h-5" />
-                        <p>Home</p>
+                        <p>Menu</p>
                     </div>
                     <Link to="/sell">
                         <div onClick={() => setIsMobile(false)} className="flex flex-col items-center gap-y-2">
