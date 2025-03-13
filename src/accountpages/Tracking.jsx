@@ -11,7 +11,6 @@ const Tracking = ({ displayedProducts }) => {
     );
     const TrackSellDisplay = filteredProducts.slice(0, 2);
 
-    // Function to generate delivery status
     const generateStatus = (status) => {
         switch (status) {
             case 'processed':
@@ -25,7 +24,6 @@ const Tracking = ({ displayedProducts }) => {
         }
     };
 
-    // Function to generate estimated delivery date
     const generateEstimatedDelivery = (days) => {
         const today = new Date();
         const deliveryDate = new Date(today.setDate(today.getDate() + days));
@@ -37,36 +35,72 @@ const Tracking = ({ displayedProducts }) => {
         });
     };
 
-    // Function to handle "View Detail" button click
     const handleViewDetail = (product) => {
         setSelectedProduct(product);
         setIsModalOpen(true);
     };
 
-    // Function to close the modal
     const closeModal = () => {
         setIsModalOpen(false);
         setSelectedProduct(null);
     };
 
     return (
-        <div className='flex w-full justify-center'>
-            <div className='bg-gradient-to-br from-white to-gray-50 p-8 rounded-lg shadow-2xl w-full max-w-4xl'>
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Order Tracking</h2>
-                <div className='flex flex-col space-y-10'>
+        <div className='flex w-full'>
+            <style>
+                {`
+                @keyframes pulse {
+                    0% { opacity: 1; }
+                    50% { opacity: 0.5; }
+                    100% { opacity: 1; }
+                }
+
+                @keyframes wave {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+
+                .progress-bar {
+                    position: relative;
+                    overflow: hidden;
+                    border-radius: 9999px;
+                }
+
+                .progress-bar::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.2) 75%);
+                    background-size: 200% 100%;
+                    animation: wave 2s linear infinite;
+                    border-radius: 9999px;
+                }
+
+                .progress-bar.pulse {
+                    animation: pulse 1.5s infinite;
+                }
+                `}
+            </style>
+            <div className='bg-gradient-to-br from-white to-gray-50 p-8 rounded-lg shadow-lg w-full'>
+                <h2 className="text-lg font-bold mb-6 text-gray-800">Track Product</h2>
+                <div className='flex flex-col space-y-8'>
                     <div>
-                        <h2 className="text-xl font-semibold mb-4 text-gray-700">Track Your Order</h2>
-                        <div className="grid grid-cols-1 gap-6">
+                        <h2 className="text-base font-semibold mb-3 text-gray-700">Order Tracking:</h2>
+                        <div className="grid grid-cols-1  gap-3">
                             {TrackOrderDisplay.map((product) => (
-                                <div key={product.id} className="bg-white hover:shadow-lg transition-shadow duration-300 flex flex-wrap gap-3 justify-between items-center border p-4 border-gray-200 rounded-lg">
+                                <div key={product.id} className="bg-white text-sm flex flex-col md:flex-row gap-4 justify-between items-center border p-4 border-gray-200 rounded-lg">
                                     <div className='flex items-center'>
                                         <img
                                             src={product.image}
                                             alt={product.name}
-                                            className="w-20 h-20 object-cover rounded-md"
+                                            className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-md"
                                         />
                                         <div className="flex flex-col ml-4 text-gray-700">
-                                            <h3 className="font-semibold text-lg">{product.name}</h3>
+                                            <h3 className="font-semibold">{product.name}</h3>
                                             <p className="text-sm">Brand: {product.brand}</p>
                                             <p className='font-semibold text-gray-900'>${product.price}</p>
                                         </div>
@@ -74,9 +108,9 @@ const Tracking = ({ displayedProducts }) => {
                                     <div className="flex flex-col items-end">
                                         <p className="text-sm text-gray-600 mb-2">{generateStatus(product.status2)}</p>
                                         <p className="text-sm text-gray-600">Estimated Delivery: {generateEstimatedDelivery(product.estimatedDeliveryDays)}</p>
-                                        <div className="w-48 bg-gray-200 rounded-full h-2.5 mt-2">
+                                        <div className="w-48 bg-gray-200 rounded-full h-2.5 mt-2 progress-bar">
                                             <div
-                                                className="bg-gradient-to-r from-green-400 to-green-600 h-2.5 rounded-full transition-all duration-500"
+                                                className="bg-gradient-to-r from-green-400 to-green-600 h-2.5 rounded-full transition-all duration-500 pulse"
                                                 style={{ width: `${product.progress}%` }}
                                             ></div>
                                         </div>
@@ -93,18 +127,18 @@ const Tracking = ({ displayedProducts }) => {
                     </div>
 
                     <div>
-                        <h2 className="text-xl font-semibold mb-4 text-gray-700">Track Your Sold Products</h2>
-                        <div className="grid grid-cols-1 gap-6">
+                        <h2 className="text-base font-semibold mb-3 text-gray-700">Track Your Sold Products:</h2>
+                        <div className="grid grid-cols-1 gap-3 text-sm">
                             {TrackSellDisplay.map((product) => (
-                                <div key={product.id} className="bg-white hover:shadow-lg transition-shadow duration-300 flex flex-wrap gap-3 justify-between items-center border p-4 border-gray-200 rounded-lg">
+                                <div key={product.id} className="bg-white flex flex-col md:flex-row gap-4 justify-between items-center border p-4 border-gray-200 rounded-lg">
                                     <div className='flex items-center'>
                                         <img
                                             src={product.image}
                                             alt={product.name}
-                                            className="w-20 h-20 object-cover rounded-md"
+                                            className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-md"
                                         />
                                         <div className="flex flex-col ml-4 text-gray-700">
-                                            <h3 className="font-semibold text-lg">{product.name}</h3>
+                                            <h3 className="font-semibold">{product.name}</h3>
                                             <p className="text-sm">Brand: {product.brand}</p>
                                             <p className='font-semibold text-gray-900'>${product.price}</p>
                                         </div>
@@ -112,9 +146,9 @@ const Tracking = ({ displayedProducts }) => {
                                     <div className="flex flex-col items-end">
                                         <p className="text-sm text-gray-600 mb-2">{generateStatus(product.status2)}</p>
                                         <p className="text-sm text-gray-600">Estimated Delivery: {generateEstimatedDelivery(product.estimatedDeliveryDays)}</p>
-                                        <div className="w-48 bg-gray-200 rounded-full h-2.5 mt-2">
+                                        <div className="w-48 bg-gray-200 rounded-full h-2.5 mt-2 progress-bar">
                                             <div
-                                                className="bg-gradient-to-r from-green-400 to-green-600 h-2.5 rounded-full transition-all duration-500"
+                                                className="bg-gradient-to-r from-green-400 to-green-600 h-2.5 rounded-full transition-all duration-500 pulse"
                                                 style={{ width: `${product.progress}%` }}
                                             ></div>
                                         </div>
@@ -134,19 +168,18 @@ const Tracking = ({ displayedProducts }) => {
 
             {/* Modal for Detailed Tracking */}
             {isModalOpen && selectedProduct && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white rounded-lg shadow-2xl w-11/12 max-w-3xl p-6">
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-lg shadow-2xl w-full max-w-3xl p-6 overflow-y-auto max-h-screen">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-bold text-gray-800">Delivery Details</h2>
                             <button
                                 onClick={closeModal}
-                                className="text-gray-500 hover:text-gray-700"
+                                className="text-gray-500 text-3xl cursor-pointer hover:text-gray-700"
                             >
                                 &times;
                             </button>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Product Information */}
+                        <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
                             <div className="bg-gray-50 p-4 rounded-lg">
                                 <h3 className="text-lg font-semibold mb-2">Product Information</h3>
                                 <div className="flex items-center">
@@ -163,7 +196,6 @@ const Tracking = ({ displayedProducts }) => {
                                 </div>
                             </div>
 
-                            {/* Delivery Progress */}
                             <div className="bg-gray-50 p-4 rounded-lg">
                                 <h3 className="text-lg font-semibold mb-2">Delivery Progress</h3>
                                 <div className="space-y-4">
@@ -181,9 +213,9 @@ const Tracking = ({ displayedProducts }) => {
                                             <p className="text-sm text-gray-600">{generateEstimatedDelivery(selectedProduct.estimatedDeliveryDays)}</p>
                                         </div>
                                     </div>
-                                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div className="w-full bg-gray-200 rounded-full h-2.5 progress-bar">
                                         <div
-                                            className="bg-gradient-to-r from-green-400 to-green-600 h-2.5 rounded-full transition-all duration-500"
+                                            className="bg-gradient-to-r from-green-400 to-green-600 h-2.5 rounded-full transition-all duration-500 pulse"
                                             style={{ width: `${selectedProduct.progress}%` }}
                                         ></div>
                                     </div>
@@ -191,7 +223,6 @@ const Tracking = ({ displayedProducts }) => {
                             </div>
                         </div>
 
-                        {/* Tracking History */}
                         <div className="mt-6">
                             <h3 className="text-lg font-semibold mb-4">Tracking History</h3>
                             <div className="space-y-4">
