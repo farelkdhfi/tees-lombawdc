@@ -79,18 +79,18 @@ const ModalBarter = ({ isBarter, barterClose }) => {
     if (!isBarter || !product) return null;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 px-4 sm:px-6 md:px-8">
-            <div ref={modalRef} className="bg-white rounded-lg shadow-2xl w-full max-w-3xl mx-4 my-8 overflow-hidden flex flex-col max-h-[90vh]">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 px-4 sm:px-3 md:px-8">
+            <div ref={modalRef} className="bg-white rounded-lg shadow-2xl w-full md:max-w-3xl md:mx-4 md:my-8 overflow-hidden flex flex-col max-h-[90vh]">
                 {/* Header */}
                 <div className="p-6 border-b border-gray-200">
                     <h2 className="text-lg font-bold text-gray-900">Apply Barter</h2>
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 overflow-y-auto p-6 text-sm">
+                <div className="flex-1 overflow-y-auto p-3 md:p-6 text-sm">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Produk yang akan dibarter */}
-                        <div className="bg-gray-50 p-6 rounded-lg">
+                        <div className="bg-gray-50 p-3 md:p-6 rounded-lg">
                             <h3 className="font-semibold text-sm mb-4 text-gray-800">Product to be traded:</h3>
                             <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-md mb-4" />
                             <div className="space-y-2 text-gray-700">
@@ -103,7 +103,7 @@ const ModalBarter = ({ isBarter, barterClose }) => {
                         </div>
 
                         {/* Form Produk Anda */}
-                        <div className="p-6 text-sm">
+                        <div className=" p-3 md:p-6 text-sm">
                             <h3 className="font-semibold text-lg mb-4 text-gray-800">Your Product</h3>
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 {/* Nama Produk */}
@@ -112,7 +112,7 @@ const ModalBarter = ({ isBarter, barterClose }) => {
                                     <input
                                         type="text"
                                         name="name"
-                                        placeholder="Contoh: Sepatu Sneakers"
+                                        placeholder="ex: t-shirt"
                                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none "
                                         value={userProduct.name}
                                         onChange={handleChange}
@@ -148,7 +148,7 @@ const ModalBarter = ({ isBarter, barterClose }) => {
                                         <input
                                             type="text"
                                             name="brand"
-                                            placeholder="Contoh: Nike"
+                                            placeholder="ex: Nike"
                                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none "
                                             value={userProduct.brand}
                                             onChange={handleChange}
@@ -160,7 +160,7 @@ const ModalBarter = ({ isBarter, barterClose }) => {
                                         <input
                                             type="text"
                                             name="size"
-                                            placeholder="Contoh: 42"
+                                            placeholder="ex: M"
                                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none "
                                             value={userProduct.size}
                                             onChange={handleChange}
@@ -173,7 +173,7 @@ const ModalBarter = ({ isBarter, barterClose }) => {
                                     <input
                                         type="text"
                                         name="location"
-                                        placeholder="Contoh: Jakarta"
+                                        placeholder="ex: Tasik"
                                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none "
                                         value={userProduct.location}
                                         onChange={handleChange}
