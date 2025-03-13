@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, ShoppingCart, Heart, MapPin, Lock, LogOut, Store } from 'lucide-react';
+import { User, ShoppingCart, Heart, MapPin, Lock, LogOut, Store, Truck } from 'lucide-react';
 import Address from './Address';
 import WishList from './WishList';
 import products from '../utils/products';
@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import MyProduct from './MyProduct';
 import Barter from './Barter';
 import { FaTradeFederation } from 'react-icons/fa';
+import Tracking from './Tracking';
 
 const MainLayoutAcc = () => {
   const [activeTab, setActiveTab] = useState('account');
@@ -27,6 +28,8 @@ const MainLayoutAcc = () => {
         return <MyProduct displayedProducts={displayedProducts} />;
       case 'order':
         return <Order displayedProducts={displayedProducts} />;
+      case 'track':
+        return <Tracking displayedProducts={displayedProducts} />;
       case 'wishlist':
         return <WishList displayedProducts={displayedProducts} />;
       case 'barter':
@@ -93,6 +96,15 @@ const MainLayoutAcc = () => {
               >
                 <ShoppingCart size={20} />
                 <span>Orders</span>
+              </li>
+              <li
+                className={`flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer ${
+                  activeTab === 'track' ? 'bg-green-50 text-green-600' : 'text-black/70 hover:bg-gray-50'
+                }`}
+                onClick={() => [setIsSidebarOpen(false), setActiveTab('track')]}
+              >
+                <Truck size={20} />
+                <span>Track Product</span>
               </li>
               <li
                 className={`flex text-xs md:text-base items-center space-x-3 p-3 rounded-lg cursor-pointer ${

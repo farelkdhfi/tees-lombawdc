@@ -49,7 +49,10 @@ const products = [
     {
         name: "Women's Fashion", items: [
             {
-                id: 1, name: "Casual Shirt", brand: "Brand A", price: 10.50, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Cornflowerblue", status: "Pending", size: "L", categori: "t-shirt", image: Img1, offeredProduct: {
+                id: 1, name: "Casual Shirt", brand: "Brand A", price: 10.50, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Cornflowerblue", status: "Pending", size: "L", categori: "t-shirt",
+                status2: 'processed',
+                estimatedDeliveryDays: 3,
+                progress: 50, image: Img1, offeredProduct: {
                     name: 'T-shirt B',
                     brand: 'Brand B',
                     price: 800,
@@ -57,7 +60,10 @@ const products = [
                 }
             },
             {
-                id: 2, name: "Formal Shirt", brand: "Brand B", price: 80.25, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "XL", categori: "dress", image: Img2, offeredProduct: {
+                id: 2, name: "Formal Shirt", brand: "Brand B", price: 80.25, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Completed", size: "XL", categori: "dress",
+                status2: 'processed',
+                estimatedDeliveryDays: 1,
+                progress: 80, image: Img2, offeredProduct: {
                     name: 'T-shirt B',
                     brand: 'Brand B',
                     price: 800,
@@ -65,7 +71,10 @@ const products = [
                 }
             },
             {
-                id: 3, name: "Modern Shirt", brand: "Brand C", price: 35.20, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Darksalmon", status: "Pending", size: "XXL", categori: "sandals", image: Img3, offeredProduct: {
+                id: 3, name: "Modern Shirt", brand: "Brand C", price: 35.20, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Darksalmon", status: "Pending", size: "XXL", categori: "sandals", 
+                status2: 'shipped',
+                estimatedDeliveryDays: 5,
+                progress: 20, image: Img3, offeredProduct: {
                     name: 'T-shirt B',
                     brand: 'Brand B',
                     price: 800,
@@ -73,7 +82,10 @@ const products = [
                 }
             },
             {
-                id: 4, name: "Vintage Shirt", brand: "Brand D", price: 22.34, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Mediumseagreen", status: "Completed", size: "M", categori: "shoes", image: Img4, offeredProduct: {
+                id: 4, name: "Vintage Shirt", brand: "Brand D", price: 22.34, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Mediumseagreen", status: "Completed", size: "M", categori: "shoes",
+                status2: 'delivered',
+                estimatedDeliveryDays: 0,
+                progress: 100, image: Img4, offeredProduct: {
                     name: 'T-shirt B',
                     brand: 'Brand B',
                     price: 800,
@@ -111,7 +123,7 @@ const products = [
             { id: 17, name: "Avatar Jacket", brand: "Brand A", price: 33.66, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Pending", size: "Medium", categori: "jacket", image: Img32 },
             { id: 18, name: "Enoc Jacket", brand: "Brand A", price: 22.99, reviews: "(2.1k) Customer Reviews", location: "New York, USA", color: "Aquamarine", status: "Pending", size: "Medium", categori: "jacket", image: Img33 },
 
-           
+
         ]
     },
     {
