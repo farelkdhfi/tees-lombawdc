@@ -26,7 +26,7 @@ const RecentlyUploaded = () => {
     useEffect(() => {
         const updateVisibleProducts = () => {
             if (window.innerWidth >= 1024) {
-                setVisibleProducts(20); // lg: 8 produk
+                setVisibleProducts(16); // lg: 8 produk
             } else if (window.innerWidth >= 768) {
                 setVisibleProducts(20); // md: 6 produk
             } else {
