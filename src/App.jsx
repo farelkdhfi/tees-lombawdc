@@ -24,10 +24,16 @@ const AppContent = () => {
   const [isOfferingOpen, setIsOfferingOpen] = useState(false);
   const location = useLocation(); // Untuk mendapatkan path saat ini
 
+  // Modal get started
   useEffect(() => {
-    if (location.pathname === "/") {
+    // Cek apakah modal sudah pernah ditampilkan
+    const hasModalBeenShown = localStorage.getItem('hasModalBeenShown');
+
+    if (location.pathname === "/" && !hasModalBeenShown) {
       const timer = setTimeout(() => {
         setIsModalOpen(true);
+        // Setel localStorage setelah modal ditampilkan
+        localStorage.setItem('hasModalBeenShown', 'true');
       }, 700);
 
       return () => clearTimeout(timer);
@@ -35,7 +41,6 @@ const AppContent = () => {
       setIsModalOpen(false);
     }
   }, [location.pathname]); // Efek berjalan saat path berubah
-
 
   useEffect(() => {
     // Cek apakah path sesuai dengan /offer/:id
@@ -57,7 +62,7 @@ const AppContent = () => {
       <ScrollToTop />
       <Navbar />
       <GetStartedModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        <ModalOffer isOffering={isOfferingOpen} offeringClose={() => setIsOfferingOpen(false)} />
+      <ModalOffer isOffering={isOfferingOpen} offeringClose={() => setIsOfferingOpen(false)} />
       <main className={`${isModalOpen ? 'pointer-events-none' : ''}`}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -77,7 +82,6 @@ const AppContent = () => {
       </main>
       {/* Footer hanya ditampilkan jika bukan di halaman /chat */}
       {!location.pathname.startsWith("/chat") && !location.pathname.startsWith("/offer") && <Footer />  && !location.pathname.startsWith("/barter") && <Footer />}
-
     </>
   );
 };
